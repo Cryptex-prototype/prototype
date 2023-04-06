@@ -1,0 +1,107 @@
+[
+  {
+    "item": {
+      "id": "mangoman-intelligent",
+      "coin_id": 26687,
+      "name": "MangoMan Intelligent",
+      "symbol": "MMIT",
+      "market_cap_rank": 328,
+      "thumb": "https://assets.coingecko.com/coins/images/26687/thumb/Mr._B.png?1659601403",
+      "small": "https://assets.coingecko.com/coins/images/26687/small/Mr._B.png?1659601403",
+      "large": "https://assets.coingecko.com/coins/images/26687/large/Mr._B.png?1659601403",
+      "slug": "mangoman-intelligent",
+      "price_btc": 1.684139612249391e-11,
+      "score": 0
+    }
+  },
+  {
+    "item": {
+      "id": "arbitrum",
+      "coin_id": 16547,
+      "name": "Arbitrum",
+      "symbol": "ARB",
+      "market_cap_rank": 40,
+      "thumb": "https://assets.coingecko.com/coins/images/16547/thumb/photo_2023-03-29_21.47.00.jpeg?1680097630",
+      "small": "https://assets.coingecko.com/coins/images/16547/small/photo_2023-03-29_21.47.00.jpeg?1680097630",
+      "large": "https://assets.coingecko.com/coins/images/16547/large/photo_2023-03-29_21.47.00.jpeg?1680097630",
+      "slug": "arbitrum",
+      "price_btc": 0.000043499148399377894,
+      "score": 1
+    }
+  },
+  {
+    "item": {
+      "id": "stargate-finance",
+      "coin_id": 24413,
+      "name": "Stargate Finance",
+      "symbol": "STG",
+      "market_cap_rank": 239,
+      "thumb": "https://assets.coingecko.com/coins/images/24413/thumb/STG_LOGO.png?1647654518",
+      "small": "https://assets.coingecko.com/coins/images/24413/small/STG_LOGO.png?1647654518",
+      "large": "https://assets.coingecko.com/coins/images/24413/large/STG_LOGO.png?1647654518",
+      "slug": "stargate-finance",
+      "price_btc": 0.000030265021002738993,
+      "score": 2
+    }
+  },
+  {
+    "item": {
+      "id": "ovr",
+      "coin_id": 13429,
+      "name": "Ovr",
+      "symbol": "OVR",
+      "market_cap_rank": 849,
+      "thumb": "https://assets.coingecko.com/coins/images/13429/thumb/ovr_logo.png?1608518911",
+      "small": "https://assets.coingecko.com/coins/images/13429/small/ovr_logo.png?1608518911",
+      "large": "https://assets.coingecko.com/coins/images/13429/large/ovr_logo.png?1608518911",
+      "slug": "ovr",
+      "price_btc": 0.00001084478114279888,
+      "score": 3
+    }
+  },
+  {
+    "item": {
+      "id": "radio-caca",
+      "coin_id": 17841,
+      "name": "Radio Caca",
+      "symbol": "RACA",
+      "market_cap_rank": 335,
+      "thumb": "https://assets.coingecko.com/coins/images/17841/thumb/ez44_BSs_400x400.jpg?1629464170",
+      "small": "https://assets.coingecko.com/coins/images/17841/small/ez44_BSs_400x400.jpg?1629464170",
+      "large": "https://assets.coingecko.com/coins/images/17841/large/ez44_BSs_400x400.jpg?1629464170",
+      "slug": "radio-caca",
+      "price_btc": 8.945150704451573e-9,
+      "score": 4
+    }
+  },
+  {
+    "item": {
+      "id": "xen-crypto",
+      "coin_id": 27713,
+      "name": "XEN Crypto",
+      "symbol": "XEN",
+      "market_cap_rank": 688,
+      "thumb": "https://assets.coingecko.com/coins/images/27713/thumb/Xen.jpeg?1665453190",
+      "small": "https://assets.coingecko.com/coins/images/27713/small/Xen.jpeg?1665453190",
+      "large": "https://assets.coingecko.com/coins/images/27713/large/Xen.jpeg?1665453190",
+      "slug": "xen-crypto",
+      "price_btc": 1.0003849979132089e-10,
+      "score": 5
+    }
+  },
+  {
+    "item": {
+      "id": "gamma-strategies",
+      "coin_id": 21975,
+      "name": "Gamma Strategies",
+      "symbol": "GAMMA",
+      "market_cap_rank": 708,
+      "thumb": "https://assets.coingecko.com/coins/images/21975/thumb/gamma-token-200.png?1640566576",
+      "small": "https://assets.coingecko.com/coins/images/21975/small/gamma-token-200.png?1640566576",
+      "large": "https://assets.coingecko.com/coins/images/21975/large/gamma-token-200.png?1640566576",
+      "slug": "gamma-strategies",
+      "price_btc": 0.000014424212847686056,
+      "score": 6
+    }
+  }
+]
