@@ -67,8 +67,13 @@
     text-shadow:
     0 0 1px #fff,
     0 0 1px #fff
-
  }
+
+#tableHead {
+    position: sticky;
+    top:0;
+    z-index: 1;
+}
 
 body { padding-bottom: 5rem; }
 h1,h2,p {padding: 0 5%;}

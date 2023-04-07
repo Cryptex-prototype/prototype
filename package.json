@@ -1,0 +1,14 @@
+{
+  "name": "example-api",
+  "version": "1.0.0",
+  "description": "coingecko api example",
+  "main": "index.js",
+  "scripts": {
+    "test": "npmtest"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "coingecko-api-v3": "^0.0.23"
+  }
+}
