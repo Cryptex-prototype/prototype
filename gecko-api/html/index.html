@@ -29,7 +29,7 @@
     section {
         position: relative;
         display: grid;
-        place-items: center;
+        /*place-items: center;*/
         /*height: 100vh;*/
     }
     .icons {
@@ -45,7 +45,8 @@
 
         </div>
     </div>
-    <section>
+
+    <section class="grid-col 3fr 1fr">
         <table class="table table-dark">
             <thead>
             <tr>
@@ -53,30 +54,26 @@
                 <th scope="col">name</th>
                 <th scope="col">ticker</th>
                 <th scope="col">price</th>
+                <th scope="col">24h change</th>
                 <th scope="col">volume</th>
                 <th scope="col">marketcap</th>
-
-
+                <th scope="col">24h Hi</th>
+                <th scope="col">24h Lo</th>
             </tr>
             </thead>
-            <tbody id="coinChart">
-
-            </tbody>
-        </table>
+            <tbody id="coinChart"></tbody>
+            </table>
 
     </section>
 
 
     <section>
-
         <div id="trending">
             <h1 style="text-align: center">Trending Now</h1>
             <hr style="color:white;">
         </div>
-
-
-
     </section>
+
 </main>
 <script src="https://code.jquery.com/jquery-3.6.4.min.js" integrity="sha256-oP6HI9z1XaZNBrJURtCoUT5SUnxFr8s3BzRl+cbzUq8=" crossorigin="anonymous"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
