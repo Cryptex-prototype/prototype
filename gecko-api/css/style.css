@@ -87,3 +87,36 @@ h1,h2,p {padding: 0 5%;}
     font-size: medium;
 }
 
+#searchResults {
+    position:absolute;
+    list-style:none;
+    left:-10px;
+    z-index: 10;
+    margin:2px;
+    padding:4px;
+    max-height:400px;
+    overflow-y:scroll;
+    width: 300px;
+}
+#searchResults a {
+    text-decoration: none!important;
+    color:inherit;
+    text-shadow: 1px 1px 0 black;
+}
+#searchResults li {
+    background:darkslategrey;
+    opacity: .9;
+}
+#searchResults li:hover {
+    background:rgba(0,0,30,.9);
+}
+
+body {
+    overflow-x: hidden;
+}
+
+.globalValue {
+    font-size: medium;
+    color: purple;
+    text-shadow: 1px 1px 0 black;
+}
