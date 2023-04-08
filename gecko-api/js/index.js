@@ -74,7 +74,7 @@ const getTrending = async () => {
                     currency: "USD",
                     notation: "compact",
                     compactDisplay: "long",
-                    maximumSignificantDigits: 3
+                    maximumSignificantDigits: 4
                 }).format(coin.current_price);
                 let volume = new Intl.NumberFormat("en-US", {
                     style: "currency",
@@ -131,7 +131,7 @@ const searchQuery = async (input) => {
         $.getJSON(`https://api.coingecko.com/api/v3/search?query=${input}`)
             .done(function(data) {
                 let info = data.coins
-                $('#searchResults').append(`<span style="z-index: 12;position: relative;right: -96%;top: 21px;color:red;cursor:pointer;" onclick="$('#searchResults').empty()">X</span>`)
+                $('#searchResults').append(`<span style="background:rgba(255,255,255,0.5);z-index: 12;position: relative;right: -96%;top: 21px;color:red;cursor:pointer;" onclick="$('#searchResults').empty()">X</span>`)
                 info.forEach((coin) => {
                 let marketCap = coin.market_cap_rank
                 if(marketCap == null){
@@ -198,9 +198,9 @@ getGas()
 $('#search').change(function (){
 $('#searchResults').empty()
 })
-// getChart("https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&order=market_cap_desc&per_page=100&page=1&sparkline=false");
-//     getTicker("https://api.coingecko.com/api/v3/simple/price?ids=shiba-inu&vs_currencies=usd&include_market_cap=true&include_24hr_vol=true&include_24hr_change=true&precision=full")
-//     getTicker("https://api.coingecko.com/api/v3/simple/price?ids=bitcoin&vs_currencies=usd&include_market_cap=true&include_24hr_vol=true&include_24hr_change=true&precision=full")
-//     getTicker("https://api.coingecko.com/api/v3/simple/price?ids=ethereum&vs_currencies=usd&include_market_cap=true&include_24hr_vol=true&include_24hr_change=true&precision=full")
+getChart("https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&order=market_cap_desc&per_page=100&page=1&sparkline=false");
+    getTicker("https://api.coingecko.com/api/v3/simple/price?ids=shiba-inu&vs_currencies=usd&include_market_cap=true&include_24hr_vol=true&include_24hr_change=true&precision=full")
+    getTicker("https://api.coingecko.com/api/v3/simple/price?ids=bitcoin&vs_currencies=usd&include_market_cap=true&include_24hr_vol=true&include_24hr_change=true&precision=full")
+    getTicker("https://api.coingecko.com/api/v3/simple/price?ids=ethereum&vs_currencies=usd&include_market_cap=true&include_24hr_vol=true&include_24hr_change=true&precision=full")
 
 // getTrending()
