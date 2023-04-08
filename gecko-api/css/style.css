@@ -87,3 +87,21 @@ h1,h2,p {padding: 0 5%;}
     font-size: medium;
 }
 
+#searchResults {
+    background:darkslategrey;
+    position:absolute;
+    list-style:none;
+    left:-10px;
+    z-index: 10;
+    margin:0;
+    padding:4px;
+    max-height:400px;
+    overflow-y:scroll;
+}
+#searchResults a {
+    text-decoration: none!important;
+    color:inherit;
+}
+#searchResults li:hover {
+    background:rgba(0,0,30,.9);
+}

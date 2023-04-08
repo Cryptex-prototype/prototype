@@ -124,9 +124,41 @@ console.log(data)
     console.error(e)
     }
 }
+
+const searchQuery = async (input) => {
+    $('#searchResults').empty()
+    try {
+        // $.getJSON(`../data/search.json`)
+        let input = $('#search').val()
+        $.getJSON(`https://api.coingecko.com/api/v3/search?query=${input}`)
+            .done(function(data) {
+                let info = data.coins
+                info.forEach((coin) => {
+                let marketCap = coin.market_cap_rank
+                if(marketCap == null){
+                    return "NA"
+                }
+                    let searchContent = "";
+                    searchContent +=
+
+                        `<li><span>#${marketCap} </span><a href="https://www.coingecko.com/en/coins/${coin.id}"><img src="${coin.thumb}" alt="${coin.id}">${coin.symbol} ${coin.id}</a></li>`
+                    // console.log(searchContent)
+                    $('#searchResults').append(searchContent)
+
+                })
+            })
+
+
+    } catch (e) {
+        console.error(e);
+    }
+}
+$('#search').change(function (){
+$('#searchResults').empty()
+})
 getChart("https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&order=market_cap_desc&per_page=100&page=1&sparkline=false");
-    getTicker("https://api.coingecko.com/api/v3/simple/price?ids=shiba-inu&vs_currencies=usd&include_market_cap=true&include_24hr_vol=true&include_24hr_change=true&precision=full")
-    getTicker("https://api.coingecko.com/api/v3/simple/price?ids=bitcoin&vs_currencies=usd&include_market_cap=true&include_24hr_vol=true&include_24hr_change=true&precision=full")
-    getTicker("https://api.coingecko.com/api/v3/simple/price?ids=ethereum&vs_currencies=usd&include_market_cap=true&include_24hr_vol=true&include_24hr_change=true&precision=full")
+    // getTicker("https://api.coingecko.com/api/v3/simple/price?ids=shiba-inu&vs_currencies=usd&include_market_cap=true&include_24hr_vol=true&include_24hr_change=true&precision=full")
+    // getTicker("https://api.coingecko.com/api/v3/simple/price?ids=bitcoin&vs_currencies=usd&include_market_cap=true&include_24hr_vol=true&include_24hr_change=true&precision=full")
+    // getTicker("https://api.coingecko.com/api/v3/simple/price?ids=ethereum&vs_currencies=usd&include_market_cap=true&include_24hr_vol=true&include_24hr_change=true&precision=full")
 
 getTrending()
