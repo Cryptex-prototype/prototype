@@ -110,3 +110,7 @@ h1,h2,p {padding: 0 5%;}
 #searchResults li:hover {
     background:rgba(0,0,30,.9);
 }
+
+body {
+    overflow-x: hidden;
+}
