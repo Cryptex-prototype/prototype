@@ -114,3 +114,9 @@ h1,h2,p {padding: 0 5%;}
 body {
     overflow-x: hidden;
 }
+
+.globalValue {
+    font-size: medium;
+    color: purple;
+    text-shadow: 1px 1px 0 black;
+}
