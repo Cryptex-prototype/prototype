@@ -133,6 +133,7 @@ const searchQuery = async (input) => {
         $.getJSON(`https://api.coingecko.com/api/v3/search?query=${input}`)
             .done(function(data) {
                 let info = data.coins
+                $('#searchResults').append(`<span style="z-index: 12;position: relative;right: -96%;top: 21px;color:red;cursor:pointer;" onclick="$('#searchResults').empty()">X</span>`)
                 info.forEach((coin) => {
                 let marketCap = coin.market_cap_rank
                 if(marketCap == null){
