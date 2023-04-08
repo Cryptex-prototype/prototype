@@ -105,8 +105,8 @@ console.log(data)
                 chartElement +=
 `<tr>
 <td class="coin-marketcapRank"><span>${coin.market_cap_rank}</span></td>
-<td><img class="coin-icon" src="${coin.image}" alt=""><span>${coin.id}</span></td>
-<td class="coin-ticker">${coin.symbol}</td>
+<td><img class="coin-icon" src="${coin.image}" alt=""><span>${coin.name}</span></td>
+<td class="coin-ticker">${coin.symbol.toUpperCase()}</td>
 <td class="coin-price">${price}</td>
 <td class="coin-volChange" style="color: ${color};">${(coin.price_change_percentage_24h).toFixed(2)}%</td>
 <td class="coin-volume">${volume}</td>
