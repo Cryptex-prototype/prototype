@@ -178,13 +178,29 @@ const getGlobal = async () => {
         }
     }
     getGlobal()
+const getGas = async () => {
+    try {
+        // $.getJSON('../mockdb/gas.json')
+    $.getJSON('https://api.etherscan.io/api?module=gastracker&action=gasoracle')
+        .done(function (data){
+            console.log(data.result.FastGasPrice)
+            let gas = "";
+            gas +=
+                `<span>Gas: <span class="globalValue">${data.result.FastGasPrice}gwei </span></span>`
+        $('#global').append(gas)
+        })
+    } catch (e) {
+        console.error(e);
+    }
+}
+getGas()
 //event listener empties searchResults list when input field changes
 $('#search').change(function (){
 $('#searchResults').empty()
 })
 // getChart("https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&order=market_cap_desc&per_page=100&page=1&sparkline=false");
-    // getTicker("https://api.coingecko.com/api/v3/simple/price?ids=shiba-inu&vs_currencies=usd&include_market_cap=true&include_24hr_vol=true&include_24hr_change=true&precision=full")
-    // getTicker("https://api.coingecko.com/api/v3/simple/price?ids=bitcoin&vs_currencies=usd&include_market_cap=true&include_24hr_vol=true&include_24hr_change=true&precision=full")
-    // getTicker("https://api.coingecko.com/api/v3/simple/price?ids=ethereum&vs_currencies=usd&include_market_cap=true&include_24hr_vol=true&include_24hr_change=true&precision=full")
+//     getTicker("https://api.coingecko.com/api/v3/simple/price?ids=shiba-inu&vs_currencies=usd&include_market_cap=true&include_24hr_vol=true&include_24hr_change=true&precision=full")
+//     getTicker("https://api.coingecko.com/api/v3/simple/price?ids=bitcoin&vs_currencies=usd&include_market_cap=true&include_24hr_vol=true&include_24hr_change=true&precision=full")
+//     getTicker("https://api.coingecko.com/api/v3/simple/price?ids=ethereum&vs_currencies=usd&include_market_cap=true&include_24hr_vol=true&include_24hr_change=true&precision=full")
 
 // getTrending()
