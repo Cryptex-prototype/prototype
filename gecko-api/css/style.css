@@ -111,6 +111,24 @@ h1,h2,p {padding: 0 5%;}
     background:rgba(0,0,30,.9);
 }
 
+.spinnyGear {
+    z-index: 15;
+    animation: gear-rotate 2s ease infinite;
+}
+@keyframes gear-rotate {
+    0% {
+        rotate: 0;
+    }
+    50% {
+        rotate: 180deg;
+    }
+    55% {
+        rotate: 180deg;
+    }
+    100% {
+        rotate: 360deg;
+    }
+}
 body {
     overflow-x: hidden;
 }
@@ -119,4 +137,9 @@ body {
     font-size: medium;
     color: purple;
     text-shadow: 1px 1px 0 black;
+}
+
+canvas {
+    width: 100% !important;
+    height: 30px !important;
 }
