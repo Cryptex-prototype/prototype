@@ -38,8 +38,7 @@
         width:20px;
     }
 </style>
-<header class="p-3 text-bg-dark">
-    <div class="container">
+<header class="container p-3 text-bg-dark">
         <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
             <a href="/" class="d-flex align-items-center mb-2 mb-lg-0 text-white text-decoration-none">
                 <svg class="bi me-2" width="40" height="32" role="img" aria-label="Bootstrap"><use xlink:href="#bootstrap"></use></svg>
@@ -63,18 +62,14 @@
                 <button type="button" class="btn btn-warning">Sign-up</button>
             </div>
         </div>
-            <div id="global" class="text-end">
-
-            </div>
-    </div>
+            <div id="global" class="text-end"></div>
 </header>
 
 
 <main>
+    <div class="container">
     <div class="ticker-wrap">
-        <div class="ticker">
-
-        </div>
+        <div class="ticker"></div>
     </div>
 
     <section class="grid-col 3fr 1fr">
@@ -97,14 +92,19 @@
             </table>
 
     </section>
-
+<section>
+    <div class="container">
+        <canvas id="Canvas1"></canvas>
+    </div>
+</section>
     <section>
         <div id="trending">
             <h1 style="text-align: center">Trending Now</h1>
             <hr style="color:white;">
         </div>
     </section>
-<div id="idk"></div>
+
+    </div>
 </main>
 <script src="https://code.jquery.com/jquery-3.6.4.min.js" integrity="sha256-oP6HI9z1XaZNBrJURtCoUT5SUnxFr8s3BzRl+cbzUq8=" crossorigin="anonymous"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>

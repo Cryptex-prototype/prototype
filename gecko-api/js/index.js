@@ -182,66 +182,30 @@ const getTrending = async () => {
                 $('#coinChart').append(chartElement)
 
                 let sparkOptions = {
-                    series: [{
-                        name: 'Price',
-                        data: coin.sparkline_in_7d.price
-                    }],
-                    chart: {
-                        type: 'area',
-                        stacked: false,
-                        height: 350,
-                        zoom: {
-                            type: 'x',
-                            enabled: true,
-                            autoScaleYaxis: true
+                        series: [{
+                            data: coin.sparkline_in_7d.price
+                        }],
+                        chart: {
+                            height: 350,
+                            type: 'line',
+                            zoom: {
+                                enabled: false
+                            }
                         },
-                        toolbar: {
-                            autoSelected: 'zoom'
-                        }
-                    },
-                    dataLabels: {
-                        enabled: false
-                    },
-                    markers: {
-                        size: 1,
-                    },
-                    title: {
-                        text: 'Stock Price Movement',
-                        align: 'left'
-                    },
-                    fill: {
-                        type: 'gradient',
-                        gradient: {
-                            shadeIntensity: 1,
-                            inverseColors: false,
-                            opacityFrom: 0.5,
-                            opacityTo: 0,
-                            stops: [0, 90, 100]
+                        dataLabels: {
+                            enabled: false
                         },
-                    },
-                    yaxis: {
-                        labels: {
-                            formatter: function (val) {
-                                return (val / 1000000).toFixed(0);
-                            },
+                        stroke: {
+                            curve: 'straight'
                         },
                         title: {
-                            text: 'Price'
+                           enabled: false
                         },
-                    },
-                    xaxis: {
-                        type: 'datetime',
-                        data: coin.last_updated
-                    },
-                    tooltip: {
-                        shared: false,
-                        y: {
-                            formatter: function (val) {
-                                return (val / 1000000).toFixed(0)
-                            }
+                        xaxis: {
+                            enabled: false
                         }
-                    }
-                };
+                    };
+
 
                 let chart = new ApexCharts(document.getElementById(`${coin.name}-sparkline`), sparkOptions).render()
 
