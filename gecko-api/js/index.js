@@ -56,15 +56,17 @@ const getTrending = async () => {
             console.error(e);
         }
     }
+
+
     const getChart = async (url) => {
+        $('#coinChart').empty()
     try {
     $.getJSON(url)
         .done(function (data) {
-            console.log(data)
             data.forEach((coin) => {
               let marketCap = new Intl.NumberFormat("en-US", {
-                    style: "currency",
-                    currency: "USD",
+                  style: "currency",
+                  currency: "USD",
                   notation: "compact",
                   compactDisplay: "long",
                   maximumSignificantDigits: 3
@@ -97,8 +99,16 @@ const getTrending = async () => {
                     compactDisplay: "long",
                     maximumSignificantDigits: 3
                 }).format(coin.low_24h)
-                let color = coin.price_change_percentage_24h > 0 ? 'green' : 'red';
 
+                let colorDay = coin.price_change_percentage_1h_in_currency > 0 ? 'green' : 'red';
+                let color = coin.price_change_percentage_24h > 0 ? 'green' : 'red';
+                let colorWeek = coin.price_change_percentage_7d_in_currency > 0 ? 'green' : 'red';
+
+
+
+
+
+                let sparkValue = coin.sparkline_in_7d.price
                 let chartElement = "";
                 chartElement +=
 `<tr>
@@ -106,18 +116,33 @@ const getTrending = async () => {
 <td><img class="coin-icon" src="${coin.image}" alt=""><span>${coin.name}</span></td>
 <td class="coin-ticker">${coin.symbol.toUpperCase()}</td>
 <td class="coin-price">${price}</td>
+<td class="coin-volChange" style="color: ${colorDay}">${(coin.price_change_percentage_1h_in_currency).toFixed(2)}%</td>
 <td class="coin-volChange" style="color: ${color};">${(coin.price_change_percentage_24h).toFixed(2)}%</td>
+<td class="coin-volChange" style="color: ${colorWeek}">${(coin.price_change_percentage_7d_in_currency).toFixed(2)}%</td>
 <td class="coin-volume">${volume}</td>
 <td class="coin-marketcap">${marketCap}</td>
 <td class="coin-high">${high}</td>
 <td class="coin-low">${low}</td>
- </tr>`
-                // api: MC rank, Name, Price, 1h/24h/7d price change, 24h volume, mkt cap,
-                //     market_cap_rank, id, current_price, price_change_percentage_24h, total_volume, market_cap
+<td id="${coin.id}-sparkline">
+<div class="loading"><span>L</span>
+  <span>o</span>
+  <span>a</span>
+  <span>d</span>
+  <span>i</span>
+  <span>n</span>
+  <span>g</span>
+  <span>.</span>
+  <span>.</span>
+  <span>.</span>
+  </div></td>`
+
                 $('#coinChart').append(chartElement)
-            })
-        })
-        }
+                $(`#${coin.id}-sparkline`).sparkline(sparkValue,{type: 'line',lineWidth: 2, lineColor:`${color}`,fillColor:false, width: 200, height:50,  normalRangeMax: coin.ath})
+
+
+            }); //forEach
+        }); //done
+        } //try
         catch (e) {
     console.error(e)
     }
@@ -177,7 +202,7 @@ const getGlobal = async () => {
             console.error(e);
         }
     }
-    getGlobal()
+    // getGlobal()
 const getGas = async () => {
     try {
         // $.getJSON('../mockdb/gas.json')
@@ -193,14 +218,16 @@ const getGas = async () => {
         console.error(e);
     }
 }
-getGas()
+// getGas()
 //event listener empties searchResults list when input field changes
 $('#search').change(function (){
 $('#searchResults').empty()
 })
-getChart("https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&order=market_cap_desc&per_page=100&page=1&sparkline=false");
-    getTicker("https://api.coingecko.com/api/v3/simple/price?ids=shiba-inu&vs_currencies=usd&include_market_cap=true&include_24hr_vol=true&include_24hr_change=true&precision=full")
-    getTicker("https://api.coingecko.com/api/v3/simple/price?ids=bitcoin&vs_currencies=usd&include_market_cap=true&include_24hr_vol=true&include_24hr_change=true&precision=full")
-    getTicker("https://api.coingecko.com/api/v3/simple/price?ids=ethereum&vs_currencies=usd&include_market_cap=true&include_24hr_vol=true&include_24hr_change=true&precision=full")
-
+// getChart("https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&order=market_cap_desc&per_page=100&page=1&sparkline=true");
+    // getTicker("https://api.coingecko.com/api/v3/simple/price?ids=shiba-inu&vs_currencies=usd&include_market_cap=true&include_24hr_vol=true&include_24hr_change=true&precision=full")
+    // getTicker("https://api.coingecko.com/api/v3/simple/price?ids=bitcoin&vs_currencies=usd&include_market_cap=true&include_24hr_vol=true&include_24hr_change=true&precision=full")
+    // getTicker("https://api.coingecko.com/api/v3/simple/price?ids=ethereum&vs_currencies=usd&include_market_cap=true&include_24hr_vol=true&include_24hr_change=true&precision=full")
+getChart('../mockdb/sparkline.json')
+// getChart('https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&category=ethereum-ecosystem&per_page=100&page=1&sparkline=true&price_change_percentage=1h%2C24h%2C7d&locale=en')
+// getChart('https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&category=ethereum-ecosystem&order=market_cap_desc&per_page=1000&page=5&sparkline=false&locale=en')
 // getTrending()
