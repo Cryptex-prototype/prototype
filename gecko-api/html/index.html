@@ -77,11 +77,11 @@
             <thead id="tableHead">
             <tr>
                 <th scope="col">#</th>
-                <th scope="col">name</th>
+                <th scope="col" onclick="sortTable(0)">name</th>
                 <th scope="col">ticker</th>
                 <th scope="col">price</th>
                 <th scope="col">24h change</th>
-                <th scope="col">volume</th>
+                <th style="cursor:pointer;" scope="col" onclick="getChart('https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&order=volume_asc%2C&per_page=100&page=1&sparkline=false&price_change_percentage=24h&locale=en')">volume</th>
                 <th scope="col">marketcap</th>
                 <th scope="col">24h Hi</th>
                 <th scope="col">24h Lo</th>
@@ -107,8 +107,9 @@
     </div>
 </main>
 <script src="https://code.jquery.com/jquery-3.6.4.min.js" integrity="sha256-oP6HI9z1XaZNBrJURtCoUT5SUnxFr8s3BzRl+cbzUq8=" crossorigin="anonymous"></script>
+<script src="../jquery-plugins/jquery-sparkline.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
 <script src="../js/index.js"></script>
-
+<script src="../js/tableSort.js"></script>
 </body>
 </html>
