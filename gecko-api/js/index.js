@@ -58,67 +58,8 @@ const getTrending = async () => {
     }
 
 
-// var options = {
-//     series: [{
-//         name: 'XYZ MOTORS',
-//         data: dates
-//     }],
-//     chart: {
-//         type: 'area',
-//         stacked: false,
-//         height: 350,
-//         zoom: {
-//             type: 'x',
-//             enabled: true,
-//             autoScaleYaxis: true
-//         },
-//         toolbar: {
-//             autoSelected: 'zoom'
-//         }
-//     },
-//     dataLabels: {
-//         enabled: false
-//     },
-//     markers: {
-//         size: 0,
-//     },
-//     title: {
-//         text: 'Stock Price Movement',
-//         align: 'left'
-//     },
-//     fill: {
-//         type: 'gradient',
-//         gradient: {
-//             shadeIntensity: 1,
-//             inverseColors: false,
-//             opacityFrom: 0.5,
-//             opacityTo: 0,
-//             stops: [0, 90, 100]
-//         },
-//     },
-//     yaxis: {
-//         labels: {
-//             formatter: coinSparkline,
-//             },
-//         },
-//         title: {
-//             text: 'Price'
-//         },
-//     },
-//     xaxis: {
-//         type: 'datetime',
-//     },
-//     tooltip: {
-//         shared: false,
-//         y: {
-//             formatter: coinSparkline,
-//             }
-//         }
-//     }
-// };
-
-
     const getChart = async (url) => {
+        $('#coinChart').empty()
     try {
     $.getJSON(url)
         .done(function (data) {
@@ -164,8 +105,7 @@ const getTrending = async () => {
 
 
 
-
-                // let chart = chartRender(`${coin.name}-sparkline`, coin.sparkline_in_7d.price).render()
+                let sparkValue = coin.sparkline_in_7d.price
                 let chartElement = "";
                 chartElement +=
 `<tr>
@@ -178,41 +118,26 @@ const getTrending = async () => {
 <td class="coin-marketcap">${marketCap}</td>
 <td class="coin-high">${high}</td>
 <td class="coin-low">${low}</td>
-<td id="${coin.name}-sparkline"></td>`
+<td id="${coin.name}-sparkline">
+<div class="loading"><span>L</span>
+  <span>o</span>
+  <span>a</span>
+  <span>d</span>
+  <span>i</span>
+  <span>n</span>
+  <span>g</span>
+  <span>.</span>
+  <span>.</span>
+  <span>.</span>
+  </div></td>`
+
                 $('#coinChart').append(chartElement)
-
-                let sparkOptions = {
-                        series: [{
-                            data: coin.sparkline_in_7d.price
-                        }],
-                        chart: {
-                            height: 350,
-                            type: 'line',
-                            zoom: {
-                                enabled: false
-                            }
-                        },
-                        dataLabels: {
-                            enabled: false
-                        },
-                        stroke: {
-                            curve: 'straight'
-                        },
-                        title: {
-                           enabled: false
-                        },
-                        xaxis: {
-                            enabled: false
-                        }
-                    };
+                $(`#${coin.name}-sparkline`).sparkline(sparkValue,{type: 'line',lineWidth: 2, lineColor:`${color}`,fillColor:false, width: 200, chartRangeMin: coin.current_price})
 
 
-                let chart = new ApexCharts(document.getElementById(`${coin.name}-sparkline`), sparkOptions).render()
-
-                $(`#${coin.name}-sparkline`).append(chart)
-            })
-        })
-        }
+            }); //forEach
+        }); //done
+        } //try
         catch (e) {
     console.error(e)
     }
@@ -293,9 +218,10 @@ const getGas = async () => {
 $('#search').change(function (){
 $('#searchResults').empty()
 })
-// getChart("https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&order=market_cap_desc&per_page=100&page=1&sparkline=false");
+// getChart("https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&order=market_cap_desc&per_page=100&page=1&sparkline=true");
     // getTicker("https://api.coingecko.com/api/v3/simple/price?ids=shiba-inu&vs_currencies=usd&include_market_cap=true&include_24hr_vol=true&include_24hr_change=true&precision=full")
     // getTicker("https://api.coingecko.com/api/v3/simple/price?ids=bitcoin&vs_currencies=usd&include_market_cap=true&include_24hr_vol=true&include_24hr_change=true&precision=full")
     // getTicker("https://api.coingecko.com/api/v3/simple/price?ids=ethereum&vs_currencies=usd&include_market_cap=true&include_24hr_vol=true&include_24hr_change=true&precision=full")
 getChart('../mockdb/sparkline.json')
+// getChart('https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&category=ethereum-ecosystem&order=market_cap_desc&per_page=1000&page=5&sparkline=false&locale=en')
 // getTrending()
