@@ -178,12 +178,12 @@ const getTrending = async () => {
 <td class="coin-marketcap">${marketCap}</td>
 <td class="coin-high">${high}</td>
 <td class="coin-low">${low}</td>
-<td><canvas id="${coin.name}-sparkline"></canvas></td>`
+<td id="${coin.name}-sparkline"></td>`
                 $('#coinChart').append(chartElement)
 
                 let sparkOptions = {
                     series: [{
-                        name: 'XYZ MOTORS',
+                        name: 'Price',
                         data: coin.sparkline_in_7d.price
                     }],
                     chart: {
@@ -203,7 +203,7 @@ const getTrending = async () => {
                         enabled: false
                     },
                     markers: {
-                        size: 0,
+                        size: 1,
                     },
                     title: {
                         text: 'Stock Price Movement',
@@ -231,6 +231,7 @@ const getTrending = async () => {
                     },
                     xaxis: {
                         type: 'datetime',
+                        data: coin.last_updated
                     },
                     tooltip: {
                         shared: false,
