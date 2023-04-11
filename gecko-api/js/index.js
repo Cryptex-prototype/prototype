@@ -99,6 +99,7 @@ const getTrending = async () => {
                     compactDisplay: "long",
                     maximumSignificantDigits: 3
                 }).format(coin.low_24h)
+
                 let colorDay = coin.price_change_percentage_1h_in_currency > 0 ? 'green' : 'red';
                 let color = coin.price_change_percentage_24h > 0 ? 'green' : 'red';
                 let colorWeek = coin.price_change_percentage_7d_in_currency > 0 ? 'green' : 'red';
@@ -122,7 +123,7 @@ const getTrending = async () => {
 <td class="coin-marketcap">${marketCap}</td>
 <td class="coin-high">${high}</td>
 <td class="coin-low">${low}</td>
-<td id="${coin.name}-sparkline">
+<td id="${coin.id}-sparkline">
 <div class="loading"><span>L</span>
   <span>o</span>
   <span>a</span>
@@ -136,7 +137,7 @@ const getTrending = async () => {
   </div></td>`
 
                 $('#coinChart').append(chartElement)
-                $(`#${coin.name}-sparkline`).sparkline(sparkValue,{type: 'line',lineWidth: 2, lineColor:`${color}`,fillColor:false, width: 200, chartRangeMin: coin.current_price})
+                $(`#${coin.id}-sparkline`).sparkline(sparkValue,{type: 'line',lineWidth: 2, lineColor:`${color}`,fillColor:false, width: 200, height:50,  normalRangeMax: coin.ath})
 
 
             }); //forEach
