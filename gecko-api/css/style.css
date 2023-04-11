@@ -119,3 +119,23 @@ body {
     color: purple;
     text-shadow: 1px 1px 0 black;
 }
+
+.spinnyGear {
+    animation: rotateGear 2s linear infinite;
+}
+
+@keyframes rotateGear {
+    0% {
+        rotate: 0deg;
+    }
+    50% {
+        rotate: 180deg;
+    }
+    55% {
+        rotate: 180deg;
+    }
+    100% {
+        rotate: 360deg;
+    }
+}
+
