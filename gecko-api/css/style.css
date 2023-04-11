@@ -120,3 +120,8 @@ body {
     color: purple;
     text-shadow: 1px 1px 0 black;
 }
+
+canvas {
+    width: 100% !important;
+    height: 30px !important;
+}
