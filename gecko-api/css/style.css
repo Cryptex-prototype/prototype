@@ -1,5 +1,4 @@
 
-
 @-webkit-keyframes ticker {
     0% {
         -webkit-transform: translate3d(0, 0, 0);
@@ -153,3 +152,24 @@ span:nth-of-type(10){ animation-delay: 0.9s; }
         transform: translateY(0em);
     }
 }
+
+.spinnyGear {
+    animation: rotateGear 2s linear infinite;
+}
+
+@keyframes rotateGear {
+    0% {
+        rotate: 0deg;
+    }
+    50% {
+        rotate: 180deg;
+    }
+    55% {
+        rotate: 180deg;
+    }
+    100% {
+        rotate: 360deg;
+    }
+}
+
+
