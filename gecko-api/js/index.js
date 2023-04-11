@@ -99,7 +99,9 @@ const getTrending = async () => {
                     compactDisplay: "long",
                     maximumSignificantDigits: 3
                 }).format(coin.low_24h)
+                let colorDay = coin.price_change_percentage_1h_in_currency > 0 ? 'green' : 'red';
                 let color = coin.price_change_percentage_24h > 0 ? 'green' : 'red';
+                let colorWeek = coin.price_change_percentage_7d_in_currency > 0 ? 'green' : 'red';
 
 
 
@@ -113,7 +115,9 @@ const getTrending = async () => {
 <td><img class="coin-icon" src="${coin.image}" alt=""><span>${coin.name}</span></td>
 <td class="coin-ticker">${coin.symbol.toUpperCase()}</td>
 <td class="coin-price">${price}</td>
+<td class="coin-volChange" style="color: ${colorDay}">${(coin.price_change_percentage_1h_in_currency).toFixed(2)}%</td>
 <td class="coin-volChange" style="color: ${color};">${(coin.price_change_percentage_24h).toFixed(2)}%</td>
+<td class="coin-volChange" style="color: ${colorWeek}">${(coin.price_change_percentage_7d_in_currency).toFixed(2)}%</td>
 <td class="coin-volume">${volume}</td>
 <td class="coin-marketcap">${marketCap}</td>
 <td class="coin-high">${high}</td>
@@ -223,5 +227,6 @@ $('#searchResults').empty()
     // getTicker("https://api.coingecko.com/api/v3/simple/price?ids=bitcoin&vs_currencies=usd&include_market_cap=true&include_24hr_vol=true&include_24hr_change=true&precision=full")
     // getTicker("https://api.coingecko.com/api/v3/simple/price?ids=ethereum&vs_currencies=usd&include_market_cap=true&include_24hr_vol=true&include_24hr_change=true&precision=full")
 getChart('../mockdb/sparkline.json')
+// getChart('https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&category=ethereum-ecosystem&per_page=100&page=1&sparkline=true&price_change_percentage=1h%2C24h%2C7d&locale=en')
 // getChart('https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&category=ethereum-ecosystem&order=market_cap_desc&per_page=1000&page=5&sparkline=false&locale=en')
 // getTrending()

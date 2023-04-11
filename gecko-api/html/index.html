@@ -80,12 +80,14 @@
                 <th scope="col" onclick="sortTable(0)">name</th>
                 <th scope="col">ticker</th>
                 <th scope="col">price</th>
-                <th scope="col">24h change</th>
+                <th scope="col">1h</th>
+                <th scope="col">24h</th>
+                <th scope="col">7d</th>
                 <th style="cursor:pointer;" scope="col" onclick="getChart('https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&order=volume_asc%2C&per_page=100&page=1&sparkline=false&price_change_percentage=24h&locale=en')">volume</th>
                 <th scope="col">marketcap</th>
                 <th scope="col">24h Hi</th>
                 <th scope="col">24h Lo</th>
-                <th scope="col">7 day</th>
+                <th scope="col">Last 7 days</th>
             </tr>
             </thead>
             <tbody id="coinChart"></tbody>
