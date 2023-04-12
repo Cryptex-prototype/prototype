@@ -52,7 +52,7 @@
             </ul>
             <div style="position: relative">
                 <div class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3">
-                    <input id="search" type="text" class="form-control form-control-dark text-bg-dark" placeholder="Search..." aria-label="Search">
+                    <input id="search" type="text" class="form-control form-control-dark text-bg-dark" placeholder="Search..." aria-label="Search" onchange="searchQuery($('#search').val())">
 
                 </div>
                 <div><ul id="searchResults"></ul></div>

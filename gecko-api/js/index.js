@@ -147,7 +147,7 @@ const searchQuery = async (input) => {
         // $.getJSON(`../data/search.json`)
         let input = $('#search').val()
         if(input != null || input != "") {
-            $.getJSON(`https://api.coingecko.com/api/v3/search?query=${input}`)
+           return $.getJSON(`https://api.coingecko.com/api/v3/search?query=${input}`)
                 .done(function (data) {
 
                     let info = data.coins
@@ -235,17 +235,13 @@ const getGas = async () => {
     }
 }
 // getGas()
-//event listener empties searchResults list when input field changes
 
-    // getTicker("https://api.coingecko.com/api/v3/simple/price?ids=shiba-inu&vs_currencies=usd&include_market_cap=true&include_24hr_vol=true&include_24hr_change=true&precision=full")
-    // getTicker("https://api.coingecko.com/api/v3/simple/price?ids=bitcoin&vs_currencies=usd&include_market_cap=true&include_24hr_vol=true&include_24hr_change=true&precision=full")
-    // getTicker("https://api.coingecko.com/api/v3/simple/price?ids=ethereum&vs_currencies=usd&include_market_cap=true&include_24hr_vol=true&include_24hr_change=true&precision=full")
-// getChart('../mockdb/sparkline.json')
+getChart('../mockdb/sparkline.json')
 // getChart('https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&per_page=100&page=1&sparkline=true&price_change_percentage=1h%2C24h%2C7d&locale=en')
-// getChart('https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&category=ethereum-ecosystem&order=market_cap_desc&per_page=1000&page=5&sparkline=false&locale=en')
+
 // getTrending()
 
-getTicker('https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&per_page=10&page=1&sparkline=false&price_change_percentage=24h&locale=en')
+// getTicker('https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&per_page=10&page=1&sparkline=false&price_change_percentage=24h&locale=en')
 
 // const getMarkets = async () => {
 //     var requestOptions = {
