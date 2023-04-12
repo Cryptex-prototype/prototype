@@ -106,7 +106,7 @@ data.forEach((coin) => {
                 chartElement +=
 `<tr>
 <td class="coin-marketcapRank"><span>${coin.market_cap_rank}</span></td>
-<td><img class="coin-icon" src="${coin.image}" alt=""><span>${coin.name}</span></td>
+<td><img class="coin-icon" src="${coin.image}" alt=""><strong> ${coin.name} </strong></td>
 <td class="coin-ticker">${coin.symbol.toUpperCase()}</td>
 <td class="coin-price">${price}</td>
 <td class="coin-volChange" style="color: ${colorDay}">${(coin.price_change_percentage_1h_in_currency).toFixed(2)}%</td>
