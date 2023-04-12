@@ -146,12 +146,12 @@ const searchQuery = async (input) => {
     try {
         // $.getJSON(`../data/search.json`)
         let input = $('#search').val()
-        if(input != null || input != "") {
+        if(input != null || input !== "") {
            return $.getJSON(`https://api.coingecko.com/api/v3/search?query=${input}`)
                 .done(function (data) {
 
                     let info = data.coins
-                    $('#searchResults').append(`<span style="background:rgba(255,255,255,0.5);z-index: 12;position: relative;right: -96%;top: 21px;color:red;cursor:pointer;" onclick="$('#searchResults').empty()">X</span>`)
+
                     info.forEach((coin) => {
                         let marketCap = coin.market_cap_rank
                         if (marketCap == null) {
@@ -183,7 +183,7 @@ function debounce(func, wait) {
     };
 }
 // Usage example:
-const debouncedFunction = debounce(() => {
+const debouncedFunction = debounce((searchQuery) => {
 let search = $('#search').val();
     searchQuery(search)
     console.log("Debounced function called");
@@ -241,7 +241,7 @@ getChart('../mockdb/sparkline.json')
 
 // getTrending()
 
-// getTicker('https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&per_page=10&page=1&sparkline=false&price_change_percentage=24h&locale=en')
+getTicker('https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&per_page=10&page=1&sparkline=false&price_change_percentage=24h&locale=en')
 
 // const getMarkets = async () => {
 //     var requestOptions = {

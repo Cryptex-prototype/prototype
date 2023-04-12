@@ -38,10 +38,11 @@
         width:20px;
     }
 </style>
-<header class="container p-3 text-bg-dark">
+<div class="container page-wrapper">
+<header class="p-3 text-bg-dark">
         <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
             <a href="/" class="d-flex align-items-center mb-2 mb-lg-0 text-white text-decoration-none">
-                <svg class="bi me-2" width="40" height="32" role="img" aria-label="Bootstrap"><use xlink:href="#bootstrap"></use></svg>
+                <svg class="bi me-2" width="40" height="32" role="img" aria-label="Bootstrap"></svg>
             </a>
 
             <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
@@ -52,7 +53,8 @@
             </ul>
             <div style="position: relative">
                 <div class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3">
-                    <input id="search" type="text" class="form-control form-control-dark text-bg-dark" placeholder="Search..." aria-label="Search" onchange="searchQuery($('#search').val())">
+                    <input id="search" type="text" class="form-control form-control-dark text-bg-dark" placeholder="Search..." aria-label="Search" onchange="if($('#search').val() !== null){searchQuery($('#search').val())}">
+                    <input type="reset" style="background:transparent;border:none;z-index: 12;position: absolute;right:1%;top: 6%;color:red;cursor:pointer;" onclick="$('#searchResults').empty()" value="X" alt="Clear the search form">
 
                 </div>
                 <div><ul id="searchResults"></ul></div>
@@ -67,7 +69,7 @@
 
 
 <main>
-    <div class="container">
+
     <div class="ticker-wrap">
         <div class="ticker"></div>
     </div>
@@ -77,13 +79,13 @@
             <thead id="tableHead">
             <tr>
                 <th scope="col">#</th>
-                <th scope="col" onclick="sortTable(0)">name</th>
+                <th scope="col" style="cursor:pointer;" onclick="sortTable(0)">name</th>
                 <th scope="col">ticker</th>
                 <th scope="col">price</th>
                 <th scope="col">1h</th>
                 <th scope="col">24h</th>
                 <th scope="col">7d</th>
-                <th style="cursor:pointer;" scope="col" onclick="getChart('https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&order=volume_asc%2C&per_page=100&page=1&sparkline=false&price_change_percentage=24h&locale=en')">volume</th>
+                <th scope="col" style="cursor:pointer;">volume</th>
                 <th scope="col">marketcap</th>
                 <th scope="col">24h Hi</th>
                 <th scope="col">24h Lo</th>
@@ -94,9 +96,7 @@
             </table>
 
     </section>
-<section>
 
-</section>
     <section>
         <div id="trending">
             <h1 style="text-align: center">Trending Now</h1>
@@ -104,8 +104,8 @@
         </div>
     </section>
 
-    </div>
 </main>
+    </div>
 <script src="https://code.jquery.com/jquery-3.6.4.min.js" integrity="sha256-oP6HI9z1XaZNBrJURtCoUT5SUnxFr8s3BzRl+cbzUq8=" crossorigin="anonymous"></script>
 <script src="../jquery-plugins/jquery-sparkline.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
