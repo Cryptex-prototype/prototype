@@ -34,21 +34,14 @@ const getTrending = async () => {
         $.getJSON(url)
             .done(function (data) {
                 console.log(data)
-                let coinObj = Object.keys(data)[0]
-                let Chng = data[`${coinObj}`].usd_24h_change.toFixed(2)
+data.forEach((coin) => {
+                let Chng = coin.price_change_percentage_24h.toFixed(2)
                 let color = Chng > 0 ? 'green' : 'red';
-                let price = new Intl.NumberFormat("en-US", {
-                    style: "currency",
-                    currency: "USD",
-                    notation: "compact",
-                    compactDisplay: "short",
-                    maximumSignificantDigits: 3
-                }).format(Object.entries(data)[0][1].usd);
-                // console.log(Object.entries(data)[0][1].usd)
-                    let tickerElement = "";
-                    tickerElement +=
-                        `<div class="ticker__item">${coinObj}: ${price} <span class="dayChange" style="color:${color};">${Chng}%</span></div></div>`
-                    $('.ticker').append(tickerElement)
+    let tickerElement = "";
+    tickerElement +=
+        `<div class="ticker__item">${coin.name}: $${coin.current_price} <span class="dayChange" style="color:${color};">${Chng}%</span></div></div>`
+    $('.ticker').append(tickerElement)
+})
             })
     }
 
@@ -227,6 +220,25 @@ $('#searchResults').empty()
     // getTicker("https://api.coingecko.com/api/v3/simple/price?ids=bitcoin&vs_currencies=usd&include_market_cap=true&include_24hr_vol=true&include_24hr_change=true&precision=full")
     // getTicker("https://api.coingecko.com/api/v3/simple/price?ids=ethereum&vs_currencies=usd&include_market_cap=true&include_24hr_vol=true&include_24hr_change=true&precision=full")
 // getChart('../mockdb/sparkline.json')
-getChart('https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&per_page=100&page=1&sparkline=true&price_change_percentage=1h%2C24h%2C7d&locale=en')
+// getChart('https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&per_page=100&page=1&sparkline=true&price_change_percentage=1h%2C24h%2C7d&locale=en')
 // getChart('https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&category=ethereum-ecosystem&order=market_cap_desc&per_page=1000&page=5&sparkline=false&locale=en')
 // getTrending()
+
+getTicker('https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&per_page=15&page=1&sparkline=false&price_change_percentage=24h&locale=en')
+
+// const getMarkets = async () => {
+//     var requestOptions = {
+//         method: 'GET',
+//         redirect: 'follow'
+//     };
+//
+//     let response = await fetch("https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&category=ethereum-ecosystem&per_page=5&page=1&sparkline=false&price_change_percentage=1h%2C24h%2C7d&locale=en", requestOptions);
+//     let data = await response.json();
+//     let formattedData = data.map(function(coin){
+//         return {
+//            id: coin.id,
+//            symbol: coin.symbol
+//         }
+//     });
+//     return formattedData;
+// }
