@@ -3,8 +3,8 @@ const Query = 'bitcoin';
 const getShow = async (input) => {
     $('#coinChart').empty()
     try {
-        // $.getJSON(`https://api.coingecko.com/api/v3/coins/${input}?localization=false&tickers=true&market_data=true&community_data=true&developer_data=true&sparkline=true`)
-        $.getJSON('../mockdb/btcShow.json')
+        $.getJSON(`https://api.coingecko.com/api/v3/coins/${input}?localization=false&tickers=true&market_data=true&community_data=true&developer_data=true&sparkline=true`)
+        // $.getJSON('../mockdb/btcShow.json')
             .done(function (coin) {
                     let marketCap = new Intl.NumberFormat("en-US", {
                         style: "decimal"
@@ -27,7 +27,19 @@ const getShow = async (input) => {
                     let low = new Intl.NumberFormat("en-US", {
                         style: "decimal"
                     }).format(coin.market_data.low_24h.usd)
-
+                    let ath = new Intl.NumberFormat("en-US", {
+                        style: "decimal"
+                    }).format(coin.market_data.ath.usd);
+                    let atl = new Intl.NumberFormat("en-US", {
+                    style: "decimal"
+                }).format(coin.market_data.atl.usd);
+                    const maxSupply = () => {
+                    if (coin.market_data.max_supply === null) {
+                        return "∞"
+                    } else {
+                        return coin.market_data.max_supply
+                    }
+                }
                     let marketCapRank = coin.market_data.market_cap_rank
 
                     let colorHour = coin.market_data.price_change_percentage_1h_in_currency.usd > 0 ? 'green' : 'red';
@@ -53,8 +65,7 @@ let weekVol = coin.market_data.price_change_percentage_7d_in_currency.usd
 <div class="col-md-8">
                <div class="coin-links "><a href="../index.html">Cryptocurrencies   >  </a> <span class="fw-bold">${coin.name}</span></div>
                <br>
-<button type="button" class="btn btn-outline-success">Rank #${marketCapRank}</button>
-Rank #${marketCapRank}
+<button type="button" class="btn btn-outline-success" data-delay="0" data-toggle="tooltip" data-placement="top" title="Ranked #${marketCapRank} in market cap.">Rank #${marketCapRank}</button>
 
 <div class="col-md-12 my-3 display-5"><img class="coin-icon" src="${coin.image.small}" alt=""><strong class="text-white fw-bold"> ${coin.name}</strong>
 <span class="coin-links">${coin.symbol.toUpperCase()}</span>
@@ -64,7 +75,7 @@ Rank #${marketCapRank}
 <div class="pt-2 d-inlineflex col-md-12">
 <span class="btn-group" role="group" aria-label="Third group">
     <button type="button" class="btn btn-secondary border border-dark">🔔</button>
-    <button type="button" class="btn btn-secondary border border-dark">☆</button>
+    <button type="button" class="btn btn-secondary border border-dark" data-delay="0" data-toggle="tooltip" data-placement="top" title="Add ${coin.name} to your Watchlist!">☆</button>
     </span>
   <span class="bg-light col-md-6 py-1 fs-6 fw-bold px-1">☆ On ${followers} watchlists</span>
 </span>
@@ -89,7 +100,6 @@ Rank #${marketCapRank}
 <h1 class="text-white justify-content-center align-self-center"> henlo</h1>
 </div>
 </div>
-</div> <!--bg-container dark-->
 <div class="row">
 
 <ul class="col-md-6 list-group list-group-flush bg-dark text-white">
@@ -101,19 +111,22 @@ Rank #${marketCapRank}
 <ul class="col-md-6 d-flex list-group list-group-flush text-white">
   <li class="list-group-item fw-bold"><a type="button" class="btn-sm rounded-circle text-white bg-dark text-decoration-none" data-delay="0" data-toggle="tooltip" data-placement="top" title="Current amount of tokens tradable on the market, excludes 'burned', staked or otherwise 'locked' tokens taken out of circulation.">?</a> Circulating Supply: <span class="coin-volume text-secondary">${coin.market_data.circulating_supply}</span></li>
   <li class="list-group-item fw-bold"><a type="button" class="btn-sm rounded-circle text-white bg-dark text-decoration-none" data-delay="0" data-toggle="tooltip" data-placement="top" title="Total tokens that already exist minus any that have been 'burned' (removed from circulation). Equivalent to outstanding shares in the stock market.">?</a> Total Supply: <span class="coin-marketcap text-secondary">${coin.market_data.total_supply}</span></li>
-  <li class="list-group-item fw-bold"><a type="button" class="btn-sm rounded-circle text-white bg-dark text-decoration-none" data-delay="0" data-toggle="tooltip" data-placement="top" title="Maximum tokens that could exist, some currencies are programmed to theoretically be printed indefintely, their max supply is denoted with the '∞' symbol.">?</a> Max Supply : <span class="coin-volume text-secondary">${coin.market_data.max_supply}</span></li>
+  <li class="list-group-item fw-bold"><a type="button" class="btn-sm rounded-circle text-white bg-dark text-decoration-none" data-delay="0" data-toggle="tooltip" data-placement="top" title="Maximum tokens that could exist, some currencies are programmed to theoretically be printed indefintely, their max supply is denoted with the '∞' symbol.">?</a> Max Supply : <span class="coin-volume text-secondary">${maxSupply()}</span></li>
 </ul>
 </div>
-<span class="coin-volChange" style="color: ${colorDay};">${(dayVol).toFixed(2)}%</span>
-<span class="coin-volChange" style="color: ${colorWeek}">${(weekVol).toFixed(2)}%</span>
-<span class="coin-volume">${volume}</span>
-
-<span class="coin-high">${high}</span>
-<span class="coin-low">${low}</span>
+<div class="row">
+<ul class="col-md-6 list-group list-group-flush">
+<li class="list-group-item fw-bold bg-dark text-secondary"><span class="text-white">${coin.name} Historical</span></li>
+<li class="list-group-item fw-bold bg-dark text-secondary"> Current price: <span class="text-white">$${price}</span></li>
+<li class="list-group-item fw-bold bg-dark text-secondary"> Today's high: <span class="text-success">$${high}</span></li>
+<li class="list-group-item fw-bold bg-dark text-secondary"> Today's low: <span class="text-warning">$${low}</span></li>
+<li class="list-group-item fw-bold bg-dark text-secondary"> All time high: <span class="text-success">$${ath}</span> ${new Date(coin.market_data.ath_date.usd).toLocaleDateString('en')}</li>
+<li class="list-group-item fw-bold bg-dark text-secondary"> All time low: <span class="text-warning">$${atl}</span> ${new Date(coin.market_data.atl_date.usd).toLocaleDateString('en')}</li>
+</ul>
+</div>
+</div> <!--bg-container dark-->
 
 `
-
-
                         $('#coin-description').append(chartElement)
 
         }); //done
@@ -124,7 +137,7 @@ Rank #${marketCapRank}
 }
 getShow()
 // getChart('../mockdb/btcShow.json')
-// getShow('sushi')
+getShow('ethereum')
 
 
 // <div id="${coin.id}-sparkline" class="loading">${sparkValue}
