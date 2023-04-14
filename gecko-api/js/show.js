@@ -31,26 +31,29 @@ const getShow = async (input) => {
                         style: "decimal"
                     }).format(coin.market_data.total_volume.usd)
                     let high = new Intl.NumberFormat("en-US", {
-                        style: "decimal"
-                    }).format(coin.market_data.high_24h.usd)
+                        style: "decimal",
+                        minimumSignificantDigits: 3
+                    }).format((coin.market_data.high_24h.usd).toFixed(2))
                     let low = new Intl.NumberFormat("en-US", {
-                        style: "decimal"
-                    }).format(coin.market_data.low_24h.usd)
+                        style: "decimal",
+                        minimumSignificantDigits: 3
+                    }).format((coin.market_data.low_24h.usd).toFixed(2))
                     let ath = new Intl.NumberFormat("en-US", {
                         style: "decimal"
-                    }).format(coin.market_data.ath.usd);
+                    }).format((coin.market_data.ath.usd).toFixed(2));
                     let atl = new Intl.NumberFormat("en-US", {
                     style: "decimal"
-                }).format(coin.market_data.atl.usd);
+                }).format((coin.market_data.atl.usd).toFixed(2));
 
 
                     //null checks
 
                 const progressBar = () => {
                     let difference = coin.market_data.high_24h.usd - coin.market_data.current_price.usd
-                      let  percent = difference / coin.market_data.high_24h.usd
+                    let percent = difference / coin.market_data.high_24h.usd * 100
+                    console.log(difference)
                     console.log(percent)
-                    return percent * 10000;
+                    return percent * 100;
                 }
                 const week_priceChange = () => {
                     if(coin.market_data.price_change_percentage_7d_in_currency.usd > 0){
@@ -145,7 +148,7 @@ let weekVol = coin.market_data.price_change_percentage_7d_in_currency.usd
   <span class="bg-light col-md-6 py-1 fs-6 fw-bold px-1">☆ On ${followers} watchlists</span>
 </span>
 </div>
-\<div class="progress m-t-20">
+<div class="progress m-t-20">
 <progress class="progress-bar bg-success"  style="position:relative;width:${progressBar()}%;height:16px;box-shadow: 1px 1px 4px rgba( 0, 0, 0, 0.2 );" max="${coin.market_data.high_24h.usd}" value="${coin.market_data.current_price.usd}"><span style="color:white; text-shadow:1px 1px 0 black;position:absolute;z-index: 5;">${price}</span></progress>
 </div>
 <div class="row m-t-20">
@@ -155,12 +158,11 @@ let weekVol = coin.market_data.price_change_percentage_7d_in_currency.usd
 </span>
 </div>
 </div>
-
 </div>
 <div class="col-md-4 d-flex">
 <h1 class="text-white justify-content-center align-self-center"> henlo</h1>
 </div>
-</div>
+
 
 <div class="row">
 
@@ -225,7 +227,7 @@ let weekVol = coin.market_data.price_change_percentage_7d_in_currency.usd
 }
 // getShow()
 // getChart('../mockdb/btcShow.json')
-getShow('bitcoin')
+getShow('sushi')
 
 
 // <div id="${coin.id}-sparkline" class="loading">${sparkValue}
