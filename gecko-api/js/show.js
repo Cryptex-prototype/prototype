@@ -195,6 +195,13 @@ let weekVol = coin.market_data.price_change_percentage_7d_in_currency.usd
 <h6 class="py-1 text-secondary">The price of <span class="text-white">${coin.name}</span> has ${week_priceChange()} in the past 7 days. The community is ${sentiment()} about <span class="text-white">${coin.name}</span> in polls today.</h6>
 </div>
 
+<div class="row">
+<div class="py-2 col-md-12">
+
+<!--market table goes here-->
+
+</div>
+</div>
 </div>
 </div> <!--bg-container dark-->
 
