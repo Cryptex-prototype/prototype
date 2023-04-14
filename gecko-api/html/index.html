@@ -53,8 +53,8 @@
             </ul>
             <div style="position: relative">
                 <div class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3">
-                    <input id="search" type="text" class="form-control form-control-dark text-bg-dark" placeholder="Search..." aria-label="Search" onchange="if($('#search').val() !== null){searchQuery($('#search').val())}">
-                    <input type="reset" style="background:transparent;border:none;z-index: 12;position: absolute;right:7%;top: 6%;color:red;cursor:pointer;" onclick="$('#searchResults').empty()" value="X" alt="Clear the search form">
+
+                    <input id="search" oninput="let input = $('#search').val();searchQuery(input); console.log(input)" type="text" class="form-control form-control-dark text-bg-dark" placeholder="Search..." aria-label="Search">
 
                 </div>
                 <div><ul id="searchResults"></ul></div>

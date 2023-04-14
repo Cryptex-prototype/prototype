@@ -3,8 +3,8 @@ const Query = 'bitcoin';
 const getShow = async (input) => {
     $('#coinChart').empty()
     try {
-        // $.getJSON(`https://api.coingecko.com/api/v3/coins/${input}?localization=false&tickers=true&market_data=true&community_data=true&developer_data=true&sparkline=true`)
-        $.getJSON('../mockdb/btcShow.json')
+        $.getJSON(`https://api.coingecko.com/api/v3/coins/${input}?localization=false&tickers=true&market_data=true&community_data=true&developer_data=true&sparkline=true`)
+        // $.getJSON('../mockdb/btcShow.json')
             .done(function (coin) {
                     let marketCap = new Intl.NumberFormat("en-US", {
                         style: "decimal"
@@ -31,18 +31,30 @@ const getShow = async (input) => {
                         style: "decimal"
                     }).format(coin.market_data.total_volume.usd)
                     let high = new Intl.NumberFormat("en-US", {
-                        style: "decimal"
-                    }).format(coin.market_data.high_24h.usd)
+                        style: "decimal",
+                        minimumSignificantDigits: 3
+                    }).format((coin.market_data.high_24h.usd).toFixed(2))
                     let low = new Intl.NumberFormat("en-US", {
-                        style: "decimal"
-                    }).format(coin.market_data.low_24h.usd)
+                        style: "decimal",
+                        minimumSignificantDigits: 3
+                    }).format((coin.market_data.low_24h.usd).toFixed(2))
                     let ath = new Intl.NumberFormat("en-US", {
                         style: "decimal"
-                    }).format(coin.market_data.ath.usd);
+                    }).format((coin.market_data.ath.usd).toFixed(2));
                     let atl = new Intl.NumberFormat("en-US", {
                     style: "decimal"
-                }).format(coin.market_data.atl.usd);
+                }).format((coin.market_data.atl.usd).toFixed(2));
+
+
                     //null checks
+
+                const progressBar = () => {
+                    let difference = coin.market_data.high_24h.usd - coin.market_data.current_price.usd
+                    let percent = difference / coin.market_data.high_24h.usd * 100
+                    console.log(difference)
+                    console.log(percent)
+                    return percent * 100;
+                }
                 const week_priceChange = () => {
                     if(coin.market_data.price_change_percentage_7d_in_currency.usd > 0){
                         return `risen <span style="color:${colorWeek}">${(weekVol).toFixed(2)}%</span>`
@@ -136,21 +148,21 @@ let weekVol = coin.market_data.price_change_percentage_7d_in_currency.usd
   <span class="bg-light col-md-6 py-1 fs-6 fw-bold px-1">☆ On ${followers} watchlists</span>
 </span>
 </div>
-<div class="pt-2 d-inlineflex col-md-12">
-<progress class="progress-bar" style="width:46%;box-shadow: 1px 1px 4px rgba( 0, 0, 0, 0.2 );" max="${coin.market_data.high_24h.usd}" value="${coin.market_data.current_price.usd}">$${price}</progress>
-<div class="row col-md-6">
+<div class="progress m-t-20">
+<progress class="progress-bar bg-success"  style="position:relative;width:${progressBar()}%;height:16px;box-shadow: 1px 1px 4px rgba( 0, 0, 0, 0.2 );" max="${coin.market_data.high_24h.usd}" value="${coin.market_data.current_price.usd}"><span style="color:white; text-shadow:1px 1px 0 black;position:absolute;z-index: 5;">${price}</span></progress>
+</div>
+<div class="row m-t-20">
 <span class="col-md-4 d-flex justify-content-start text-white">$${low}</span>
 <span class="col-md-4 d-flex text-light justify-content-center align-center">24h Range</span>
 <span class="col-md-4 d-flex text-light justify-content-end">$${high}</span>
 </span>
 </div>
 </div>
-
 </div>
 <div class="col-md-4 d-flex">
 <h1 class="text-white justify-content-center align-self-center"> henlo</h1>
 </div>
-</div>
+
 
 <div class="row">
 
@@ -213,9 +225,9 @@ let weekVol = coin.market_data.price_change_percentage_7d_in_currency.usd
     console.error(e)
     }
 }
-getShow()
+// getShow()
 // getChart('../mockdb/btcShow.json')
-// getShow('humanscape')
+getShow('sushi')
 
 
 // <div id="${coin.id}-sparkline" class="loading">${sparkValue}
