@@ -38,12 +38,10 @@
     box-sizing: content-box;
 }
 .ticker {
-
-    display: inline-block;
     font-family: "Andale Mono";
     font-size: .5em;
     text-shadow: 1px 1px 0 black;
-    height: 4rem;
+    height: 2rem;
     line-height: 4rem;
     white-space: nowrap;
     padding-right: 100%;

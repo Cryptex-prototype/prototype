@@ -34,6 +34,7 @@ const getTrending = async () => {
         $.getJSON(url)
             .done(function (data) {
                 console.log(data)
+
                 data.forEach((coin) => {
                     let Chng = (coin.price_change_percentage_24h).toFixed(2)
                     let color = Chng > 0 ? 'green' : 'red';
@@ -115,7 +116,7 @@ const getTrending = async () => {
                 chartElement +=
 `<tr>
 <td class="coin-marketcapRank"><span>${coin.market_cap_rank}</span></td>
-<td><img class="coin-icon" src="${coin.image}" alt=""><span>${coin.name}</span></td>
+<td><img class="coin-icon" src="${coin.image}" alt=""><strong> ${coin.name} </strong></td>
 <td class="coin-ticker">${coin.symbol.toUpperCase()}</td>
 <td class="coin-price">${price}</td>
 <td class="coin-volChange" style="color: ${colorDay}">${(coin.price_change_percentage_1h_in_currency).toFixed(2)}%</td>
@@ -153,6 +154,7 @@ const getTrending = async () => {
 const searchQuery = (input) => {
     $('#searchResults').empty();
     try {
+
         $.getJSON(`https://api.coingecko.com/api/v3/search?query=${input}`)
             .done(function (data) {
                 let info = data.coins;
@@ -184,6 +186,27 @@ function debounce(func, wait) {
         }, wait);
     };
 }
+function debounce(func, wait) {
+    let timeout;
+    return function(...args) {
+        const context = this;
+        clearTimeout(timeout);
+        timeout = setTimeout(() => {
+            func.apply(context, args);
+        }, wait);
+    };
+}
+// Usage example:
+const debouncedFunction = debounce((searchQuery) => {
+let search = $('#search').val();
+    searchQuery(search)
+    console.log("Debounced function called");
+}, 300);
+
+
+$('#search').change(function (){
+    $('#searchResults').empty()
+
 
 const debouncedFunction = debounce(searchQuery, 4000);
 
@@ -191,6 +214,7 @@ $('#search').on('input', function () {
     $('#searchResults').empty();
     debouncedFunction($(this).val());
 });
+
 
 const getGlobal = async () => {
     try {
@@ -231,6 +255,7 @@ const getGas = async () => {
         console.error(e);
     }
 }
+
 //event listener empties searchResults list when input field changes
 $('#search').change(function (){
 $('#searchResults').empty()
@@ -243,3 +268,4 @@ getTrending()
 // getChart('../mockdb/sparkline.json')
 // getChart('https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&category=ethereum-ecosystem&per_page=100&page=1&sparkline=true&price_change_percentage=1h%2C24h%2C7d&locale=en')
 // getChart('https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&category=ethereum-ecosystem&order=market_cap_desc&per_page=1000&page=5&sparkline=false&locale=en')
+
