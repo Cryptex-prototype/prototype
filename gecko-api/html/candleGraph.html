@@ -6,10 +6,75 @@
 </head>
 <body>
 
-<div id="chart"></div>
-
+<button id="btn1">1 Day</button>
+<button id="btn30">30 Days</button>
+<button id="btn90">90 Days</button>
+<div id="liveChart"></div>
 <script src="https://code.jquery.com/jquery-3.6.4.min.js" integrity="sha256-oP6HI9z1XaZNBrJURtCoUT5SUnxFr8s3BzRl+cbzUq8=" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
-<script src="/js/test.js"></script>
+
+
+<script>
+    let chart;
+
+    const getOHLC = async (coin, days) => {
+        try {
+            const data = await $.getJSON(`https://api.coingecko.com/api/v3/coins/${coin}/ohlc?vs_currency=usd&days=${days}`);
+
+            const dataPoints = data.map((coin) => {
+                return {
+                    x: new Date(coin[0]),
+                    y: [coin[1], coin[2], coin[3], coin[4]]
+                };
+            });
+
+            const options2 = {
+                series: [{
+                    data: dataPoints
+                }],
+                chart: {
+                    type: 'candlestick',
+                    height: 350
+                },
+                title: {
+                    text: 'CandleStick Chart',
+                    align: 'left'
+                },
+                xaxis: {
+                    type: 'datetime'
+                },
+                yaxis: {
+                    tooltip: {
+                        enabled: true
+                    }
+                }
+            };
+
+            if (chart) {
+                chart.destroy();
+            }
+
+            chart = new ApexCharts($("#liveChart")[0], options2);
+            chart.render();
+        } catch (e) {
+            console.error(e);
+        }
+    };
+
+    $("#btn1").click(() => {
+        getOHLC('bitcoin', '1');
+    });
+
+    $("#btn30").click(() => {
+        getOHLC('bitcoin', '30');
+    });
+
+    $("#btn90").click(() => {
+        getOHLC('bitcoin', '90');
+    });
+</script>
+
+
+
 </body>
 </html>

@@ -1,4 +1,10 @@
- const searchQuery = (input) => {
+
+
+
+
+
+//Search and Debouncer
+const searchQuery = (input) => {
     $('#searchResults').empty();
     try {
     $.getJSON(`https://api.coingecko.com/api/v3/search?query=${input}`)

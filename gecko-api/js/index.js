@@ -196,75 +196,62 @@ function debounce(func, wait) {
         }, wait);
     };
 }
-// Usage example:
-const debouncedFunction = debounce((searchQuery) => {
-let search = $('#search').val();
-    searchQuery(search)
-    console.log("Debounced function called");
-}, 300);
+
+    const debouncedFunction = debounce(searchQuery, 4000);
+
+    $('#search').on('input', function () {
+        $('#searchResults').empty();
+        debouncedFunction($(this).val());
+    });
 
 
-$('#search').change(function (){
-    $('#searchResults').empty()
-
-
-const debouncedFunction = debounce(searchQuery, 4000);
-
-$('#search').on('input', function () {
-    $('#searchResults').empty();
-    debouncedFunction($(this).val());
-});
-
-
-const getGlobal = async () => {
-    try {
-        $.getJSON("https://api.coingecko.com/api/v3/global")
-            .done(function(data) {
-                console.log(data)
+    const getGlobal = async () => {
+        try {
+            $.getJSON("https://api.coingecko.com/api/v3/global")
+                .done(function (data) {
+                    console.log(data)
                     let coin = data.data
-                let price = new Intl.NumberFormat("en-US", {
-                    style: "currency",
-                    currency: "USD",
-                    notation: "compact",
-                    compactDisplay: "long",
-                    maximumSignificantDigits: 3
-                }).format(coin.total_volume.usd);
-                coin.total_volume.usd
-                  let Global = "";
-                  Global +=
-                      `<span>Coins: <span class="globalValue">${coin.active_cryptocurrencies}</span> Exchanges: <span class="globalValue">${coin.markets}</span> 24hr Volume: <span class="globalValue">${price} </span> BTC Dominance: <span class="globalValue">${coin.market_cap_percentage.btc.toFixed(2)}%</span> </span>`
+                    let price = new Intl.NumberFormat("en-US", {
+                        style: "currency",
+                        currency: "USD",
+                        notation: "compact",
+                        compactDisplay: "long",
+                        maximumSignificantDigits: 3
+                    }).format(coin.total_volume.usd);
+                    coin.total_volume.usd
+                    let Global = "";
+                    Global +=
+                        `<span>Coins: <span class="globalValue">${coin.active_cryptocurrencies}</span> Exchanges: <span class="globalValue">${coin.markets}</span> 24hr Volume: <span class="globalValue">${price} </span> BTC Dominance: <span class="globalValue">${coin.market_cap_percentage.btc.toFixed(2)}%</span> </span>`
                     $('#global').append(Global)
 
-            })
-            } catch (e) {
+                })
+        } catch (e) {
             console.error(e);
         }
     }
-const getGas = async () => {
-    try {
-        // $.getJSON('../mockdb/gas.json')
-    $.getJSON('https://api.etherscan.io/api?module=gastracker&action=gasoracle')
-        .done(function (data){
-            console.log(data.result.FastGasPrice)
-            let gas = "";
-            gas +=
-                `<span>Gas: <span class="globalValue">${data.result.FastGasPrice}gwei </span></span>`
-        $('#global').append(gas)
-        })
-    } catch (e) {
-        console.error(e);
+    const getGas = async () => {
+        try {
+            // $.getJSON('../mockdb/gas.json')
+            $.getJSON('https://api.etherscan.io/api?module=gastracker&action=gasoracle')
+                .done(function (data) {
+                    console.log(data.result.FastGasPrice)
+                    let gas = "";
+                    gas +=
+                        `<span>Gas: <span class="globalValue">${data.result.FastGasPrice}gwei </span></span>`
+                    $('#global').append(gas)
+                })
+        } catch (e) {
+            console.error(e);
+        }
     }
-}
 
 //event listener empties searchResults list when input field changes
-$('#search').change(function (){
-$('#searchResults').empty()
-})
-getChart('https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&per_page=10&page=1&sparkline=true&price_change_percentage=1h%2C24h%2C7d&locale=en');
-getGlobal()
-getGas()
-getTrending()
-    getTicker('https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&ids=bitcoin%2Cethereum%2Cdogecoin%2Cshiba-inu&per_page=10&page=1&sparkline=true&price_change_percentage=1h%2C24h%2C7d&locale=en')
+
+    getChart('https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&per_page=10&page=1&sparkline=true&price_change_percentage=1h%2C24h%2C7d&locale=en');
+    getGlobal()
+    getGas()
+    getTrending()
+    getTicker('https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&ids=bitcoin%2Cethereum%2Cdogecoin%2Cshiba-inu%2Cchainlink&per_page=10&page=1&sparkline=true&price_change_percentage=1h%2C24h%2C7d&locale=en')
 // getChart('../mockdb/sparkline.json')
 // getChart('https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&category=ethereum-ecosystem&per_page=100&page=1&sparkline=true&price_change_percentage=1h%2C24h%2C7d&locale=en')
 // getChart('https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&category=ethereum-ecosystem&order=market_cap_desc&per_page=1000&page=5&sparkline=false&locale=en')
