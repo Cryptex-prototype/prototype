@@ -1,4 +1,4 @@
-const Query = 'bitcoin';
+const Query = 'dogecoin';
 
 const getShow = async (input) => {
     $('#coinChart').empty()
@@ -227,7 +227,7 @@ let weekVol = coin.market_data.price_change_percentage_7d_in_currency.usd
 }
 // getShow()
 // getChart('../mockdb/btcShow.json')
-getShow('sushi')
+getShow(Query)
 
 
 // <div id="${coin.id}-sparkline" class="loading">${sparkValue}
