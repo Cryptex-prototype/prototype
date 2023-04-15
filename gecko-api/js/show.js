@@ -110,7 +110,7 @@ const getShow = async (input) => {
                     let marketCapRank = coin.market_data.market_cap_rank
 
                     let colorHour = coin.market_data.price_change_percentage_1h_in_currency.usd > 0 ? 'green' : 'red';
-                    let colorDay = coin.market_data.price_change_percentage_24h_in_currency.usd > 0 ? 'green' : 'red';
+                    let colorDay = coin.market_data.price_change_percentage_24h_in_currency.usd > 0 ? 'text-success' : 'red';
                     let colorWeek = coin.market_data.price_change_percentage_7d_in_currency.usd > 0 ? 'green' : 'red';
 
 let hourVol = coin.market_data.price_change_percentage_1h_in_currency.usd
@@ -167,15 +167,15 @@ let weekVol = coin.market_data.price_change_percentage_7d_in_currency.usd
 <div class="row">
 
 <ul class="col-md-6 list-group list-group-flush bg-dark text-white">
-  <li class="list-group-item fw-bold bg-primary"><a type="button" class="btn-sm rounded-circle text-white bg-dark text-decoration-none" data-delay="0" data-toggle="tooltip" data-placement="top" title="Valuation derived from multiplying the current price by the circulating supply of tokens available for trade.">?</a> Market Cap: <span class="coin-marketcap text-white">$${marketCap}</span></li>
-  <li class="list-group-item fw-bold bg-primary"><a type="button" class="btn-sm rounded-circle text-white bg-dark text-decoration-none" data-delay="0" data-toggle="tooltip" data-placement="top" title="Fully Diluted Valuation. Theoretical value of a currency multiplied by the current price and total supply, includes tokens that are locked in token governance wallets or otherwise withheld from circulation.">?</a> FDV: <span class="coin-marketcap text-white">${FDV()}</span></li>
-  <li class="list-group-item fw-bold bg-primary"><a type="button" class="btn-sm rounded-circle text-white bg-dark text-decoration-none" data-delay="0" data-toggle="tooltip" data-placement="top" title="Trade valuation last 24 hours across all trading platforms.">?</a> 24h Volume: <span class="coin-volume text-white">$${volume}</span> <span style="color: ${colorDay};text-shadow:1px 1px 0 black;">${(dayVol).toFixed(2)}%</span></li>
+  <li class="list-group-item fw-bold bg-secondary"><a type="button" class="btn-sm rounded-circle text-white bg-dark text-decoration-none" data-delay="0" data-toggle="tooltip" data-placement="top" title="Valuation derived from multiplying the current price by the circulating supply of tokens available for trade.">?</a> Market Cap: <span style="text-shadow: 1px 1px black;" class="coin-marketcap text-white" style="text-shadow: 1px 1px black;">$${marketCap}</span></li>
+  <li class="list-group-item fw-bold bg-secondary"><a type="button" class="btn-sm rounded-circle text-white bg-dark text-decoration-none" data-delay="0" data-toggle="tooltip" data-placement="top" title="Fully Diluted Valuation. Theoretical value of a currency multiplied by the current price and total supply, includes tokens that are locked in token governance wallets or otherwise withheld from circulation.">?</a> FDV: <span class="coin-marketcap text-white" style="text-shadow: 1px 1px black;">${FDV()}</span></li>
+  <li class="list-group-item fw-bold bg-secondary"><a type="button" class="btn-sm rounded-circle text-white bg-dark text-decoration-none" data-delay="0" data-toggle="tooltip" data-placement="top" title="Trade valuation last 24 hours across all trading platforms.">?</a> 24h Volume: <span class="coin-volume text-white" style="text-shadow: 1px 1px black;">$${volume}</span> <span style="color: ${colorDay};text-shadow:1px 1px 0 black;">${(dayVol).toFixed(2)}%</span></li>
 </ul>
 
 <ul class="col-md-6 d-flex list-group list-group-flush text-white">
-  <li class="list-group-item fw-bold bg-primary"><a type="button" class="btn-sm rounded-circle text-white bg-dark text-decoration-none" data-delay="0" data-toggle="tooltip" data-placement="top" title="Current amount of tokens tradable on the market, excludes 'burned', staked or otherwise 'locked' tokens taken out of circulation.">?</a> Circulating Supply: <span class="coin-volume text-white">${circulatingSupply()}</span></li>
-  <li class="list-group-item fw-bold bg-primary"><a type="button" class="btn-sm rounded-circle text-white bg-dark text-decoration-none" data-delay="0" data-toggle="tooltip" data-placement="top" title="Total tokens that already exist minus any that have been 'burned' (removed from circulation). Equivalent to outstanding shares in the stock market.">?</a> Total Supply: <span class="coin-marketcap text-white">${totalSupply()}</span></li>
-  <li class="list-group-item fw-bold bg-primary"><a type="button" class="btn-sm rounded-circle text-white bg-dark text-decoration-none" data-delay="0" data-toggle="tooltip" data-placement="top" title="Maximum tokens that could exist, some currencies are programmed to theoretically be printed indefintely, their max supply is denoted with the '∞' symbol.">?</a> Max Supply : <span class="coin-volume text-white">${maxSupply()}</span></li>
+  <li class="list-group-item fw-bold bg-secondary"><a type="button" class="btn-sm rounded-circle text-white bg-dark text-decoration-none" data-delay="0" data-toggle="tooltip" data-placement="top" title="Current amount of tokens tradable on the market, excludes 'burned', staked or otherwise 'locked' tokens taken out of circulation.">?</a> Circulating Supply: <span style="text-shadow: 1px 1px black;" class="coin-volume text-white" style="text-shadow: 1px 1px black;">${circulatingSupply()}</span></li>
+  <li class="list-group-item fw-bold bg-secondary"><a type="button" class="btn-sm rounded-circle text-white bg-dark text-decoration-none" data-delay="0" data-toggle="tooltip" data-placement="top" title="Total tokens that already exist minus any that have been 'burned' (removed from circulation). Equivalent to outstanding shares in the stock market.">?</a> Total Supply: <span style="text-shadow: 1px 1px black;" class="coin-marketcap text-white" style="text-shadow: 1px 1px black;">${totalSupply()}</span></li>
+  <li class="list-group-item fw-bold bg-secondary"><a type="button" class="btn-sm rounded-circle text-white bg-dark text-decoration-none" data-delay="0" data-toggle="tooltip" data-placement="top" title="Maximum tokens that could exist, some currencies are programmed to theoretically be printed indefintely, their max supply is denoted with the '∞' symbol.">?</a> Max Supply : <span style="text-shadow: 1px 1px black;" class="coin-volume text-white" style="text-shadow: 1px 1px black;">${maxSupply()}</span></li>
 </ul>
 </div>
 <div class="row">
@@ -225,23 +225,8 @@ let weekVol = coin.market_data.price_change_percentage_7d_in_currency.usd
     console.error(e)
     }
 }
-// getShow()
+
 // getChart('../mockdb/btcShow.json')
 getShow(Query)
 
 
-// <div id="${coin.id}-sparkline" class="loading">${sparkValue}
-//     <span>L</span>
-// <span>o</span>
-// <span>a</span>
-// <span>d</span>
-// <span>i</span>
-// <span>n</span>
-// <span>g</span>
-// <span>.</span>
-// <span>.</span>
-// <span>.</span>
-// </div></div>
-// </div>
-
-// $(`#${coin.id}-sparkline`).sparkline(sparkValue,{type: 'line',lineWidth: 2, lineColor:`${colorDay}`,fillColor:false, width: 300, height:100,  normalRangeMax: coin.ath})
