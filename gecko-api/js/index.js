@@ -140,7 +140,7 @@ const getTrending = async () => {
   </div></td>`
 
                 $('#coinChart').append(chartElement)
-                $(`#${coin.id}-sparkline`).sparkline(sparkValue,{type: 'line',lineWidth: 2, lineColor:`${color}`,fillColor:false, width: 200, height:50,  normalRangeMax: coin.ath})
+                $(`#${coin.id}-sparkline`).sparkline(sparkValue,{type: 'line',lineWidth: 2, lineColor:`${colorWeek}`,fillColor:false, width: 200, height:50,  normalRangeMax: coin.ath})
 
 
             }); //forEach
