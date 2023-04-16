@@ -15,51 +15,106 @@
 
 <!-- header and other content -->
 <header>
+<!--  Search-->
+  <input id="search" type="text" oninput="if($('#search').val() !== null){searchQuery($('#search').val())}" class="form-control form-control-dark bg-dark" placeholder="Search..." aria-label="Search">
+  <div><ul id="searchResults"></ul></div>
+  <button onclick="topFunction()" class="bg-primary" id="topBtn" title="Go to top"><i class="bi bi-arrow-up-circle"></i></button>
+<!--Search Results-->
 
 </header>
 
 <main>
-  <input id="search" type="text" oninput="if($('#search').val() !== null){searchQuery($('#search').val())}" class="form-control form-control-dark bg-dark" placeholder="Search..." aria-label="Search">
-  <div><ul id="searchResults"></ul></div>
 
 
 
-  <button onclick="topFunction()" class="bg-primary" id="topBtn" title="Go to top"><i class="bi bi-arrow-up-circle"></i></button>
-<div class="container">
+
+<!--the coin table chart lives in the tabpanel div, each tab button calls getChart() with different queries-->
+
   <section class="row">
-    <table class="table table-dark">
-      <thead id="tableHead">
-      <tr>
-        <th scope="col">#</th>
-        <th scope="col" style="cursor:pointer;" onclick="sortTable(0)">name</th>
-        <th scope="col">ticker</th>
-        <th scope="col">price</th>
-        <th scope="col">1h</th>
-        <th scope="col">24h</th>
-        <th scope="col">7d</th>
-        <th scope="col" style="cursor:pointer;">volume</th>
-        <th scope="col">marketcap</th>
-        <th scope="col">24h Hi</th>
-        <th scope="col">24h Lo</th>
-        <th scope="col">Candles</th>
-        <th scope="col">Last 7 days</th>
-      </tr>
-      </thead>
-      <tbody id="coinChart"></tbody>
-    </table>
+    <div class="d-flex align-items-start">
+      <div class="nav flex-column nav-pills me-3" id="v-pills-tab" role="tablist" aria-orientation="vertical">
+        <button class="nav-link active" id="v-pills-home-tab" data-bs-toggle="pill" data-bs-target="#v-pills-coinTable" type="button" role="tab" aria-controls="v-pills-watchlist1" aria-selected="true" onclick="getChart('../mockdb/watchlist1.json')">Watchlist 1</button>
+        <button class="nav-link" id="v-pills-profile-tab" data-bs-toggle="pill" data-bs-target="#v-pills-coinTable" type="button" role="tab" aria-controls="v-pills-watchlist2" aria-selected="false" onclick="getChart('../mockdb/watchlist2.json')">Watchlist 2</button>
+        <button class="nav-link" id="v-pills-messages-tab" data-bs-toggle="pill" data-bs-target="#v-pills-coinTable" type="button" role="tab" aria-controls="v-pills-watchlist3" aria-selected="false" onclick="getChart('../mockdb/watchlist1.json')">Watchlist 3</button>
+        <button class="nav-link" id="v-pills-settings-tab" data-bs-toggle="pill" data-bs-target="#v-pills-coinTable" type="button" role="tab" aria-controls="v-pills-watchlist4" aria-selected="false" onclick="getChart('../mockdb/watchlist2.json')">Watchlist 4</button>
+      </div>
+      <div class="tab-content" id="v-pills-tabContent">
+
+        <div class="tab-pane fade show active" id="v-pills-home" role="tabpanel" aria-labelledby="v-pills-coinTable-tab">
+          <section>
+          <table class="table table-dark">
+            <thead id="tableHead">
+            <tr>
+              <th scope="col">#</th>
+              <th scope="col" style="cursor:pointer;" onclick="sortTable(0)">name</th>
+              <th scope="col">ticker</th>
+              <th scope="col">price</th>
+              <th scope="col">1h</th>
+              <th scope="col">24h</th>
+              <th scope="col">7d</th>
+              <th scope="col" style="cursor:pointer;">volume</th>
+              <th scope="col">marketcap</th>
+              <th scope="col">24h Hi</th>
+              <th scope="col">24h Lo</th>
+              <th scope="col">Candles</th>
+              <th scope="col">Last 7 days</th>
+            </tr>
+            </thead>
+            <tbody id="coinChart"></tbody>
+          </table>
+        </section>
+          <!--live chart-->
+          <section>
+            <div class="row">
+              <div class="container">
+                <div id="chartButtons">
+                </div>
+                <div style="position:relative" id="liveChart"></div>
+                <div id="chartBottom"></div>
+              </div>
+            </div>
+          </section></div> <!--DOM populate -->
+
+      </div>
+    </div>
   </section>
-<!--live chart-->
-<section>
-    <div class="row">
-  <div class="container">
-    <div id="chartButtons">
-    </div>
-  <div style="position:relative" id="liveChart"></div>
-    <div id="chartBottom"></div>
-    </div>
-</div>
-</section>
-</div>
+
+
+<!--  -->
+<!--  <section>-->
+<!--    <table class="col-md-10 table table-dark">-->
+<!--      <thead id="tableHead">-->
+<!--      <tr>-->
+<!--        <th scope="col">#</th>-->
+<!--        <th scope="col" style="cursor:pointer;" onclick="sortTable(0)">name</th>-->
+<!--        <th scope="col">ticker</th>-->
+<!--        <th scope="col">price</th>-->
+<!--        <th scope="col">1h</th>-->
+<!--        <th scope="col">24h</th>-->
+<!--        <th scope="col">7d</th>-->
+<!--        <th scope="col" style="cursor:pointer;">volume</th>-->
+<!--        <th scope="col">marketcap</th>-->
+<!--        <th scope="col">24h Hi</th>-->
+<!--        <th scope="col">24h Lo</th>-->
+<!--        <th scope="col">Candles</th>-->
+<!--        <th scope="col">Last 7 days</th>-->
+<!--      </tr>-->
+<!--      </thead>-->
+<!--      <tbody id="coinChart"></tbody>-->
+<!--    </table>-->
+<!--  </section>-->
+<!--&lt;!&ndash;live chart&ndash;&gt;-->
+<!--<section>-->
+<!--    <div class="row">-->
+<!--  <div class="container">-->
+<!--    <div id="chartButtons">-->
+<!--    </div>-->
+<!--  <div style="position:relative" id="liveChart"></div>-->
+<!--    <div id="chartBottom"></div>-->
+<!--    </div>-->
+<!--</div>-->
+<!--</section>-->
+<!--</div>-->
 <section style="height: 100vh;">
 
 </section>
