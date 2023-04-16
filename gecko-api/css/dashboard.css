@@ -13,11 +13,104 @@ h1,h2,p {padding: 0 5%;}
     font-size: medium;
 }
 
+
+@-webkit-keyframes ticker {
+    0% {
+        -webkit-transform: translate3d(0, 0, 0);
+        transform: translate3d(0, 0, 0);
+        visibility: visible;
+    }
+
+    100% {
+        -webkit-transform: translate3d(-100%, 0, 0);
+        transform: translate3d(-100%, 0, 0);
+    }
+}
+
+@keyframes ticker {
+    0% {
+        -webkit-transform: translate3d(0, 0, 0);
+        transform: translate3d(0, 0, 0);
+        visibility: visible;
+    }
+
+    100% {
+        -webkit-transform: translate3d(-100%, 0, 0);
+        transform: translate3d(-100%, 0, 0);
+    }
+}
+
+.ticker-wrap {
+    position: relative;
+    top: 0;
+    left: -50%;
+    width: 100%;
+    overflow: hidden;
+    height: 4rem;
+    background: rgba(10,10,10, 0.9);
+    border: 1px solid #999;
+    padding-left: 100%;
+    box-sizing: content-box;
+}
+.ticker {
+    font-family: "Andale Mono";
+    font-size: .5em;
+    text-shadow: 1px 1px 0 black;
+    height: 2rem;
+    line-height: 4rem;
+    white-space: nowrap;
+    padding-right: 100%;
+    box-sizing: content-box;
+
+    -webkit-animation-iteration-count: infinite;
+    animation-iteration-count: infinite;
+    -webkit-animation-timing-function: linear;
+    animation-timing-function: linear;
+    -webkit-animation-name: ticker;
+    animation-name: ticker;
+    -webkit-animation-duration: 30s;
+    animation-duration: 30s;
+}
+.ticker__item {
+    display: inline-block;
+    padding: 0 2rem;
+    font-size: 2rem;
+    color: white;
+    text-shadow:
+            0 0 1px #fff,
+            0 0 1px #fff
+}
+
+#tableHead {
+    position: sticky;
+    top:0;
+    z-index: 1;
+}
+
+body {
+    padding-bottom: 5rem;
+    font-family: -apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Helvetica,Arial,sans-serif,Apple Color Emoji,Segoe UI Emoji,Segoe UI Symbol
+}
+h1,h2,p {padding: 0 5%;}
+
+.coin-icon{
+    height:25px;
+    width:25px;
+}
+.coin-volChange {
+    vertical-align:super;
+    font-size: medium;
+}
+#search::placeholder {
+    font-weight: bold;
+    opacity: 0.5;
+    color: white;
+}
+
 #searchResults {
     position:absolute;
     list-style:none;
-    left:200px;
-    top:120px;
+    left:-10px;
     z-index: 10;
     margin:2px;
     padding:4px;
@@ -27,11 +120,11 @@ h1,h2,p {padding: 0 5%;}
 }
 #searchResults a {
     text-decoration: none!important;
-    color:inherit;
+    color:white;
     text-shadow: 1px 1px 0 black;
 }
 #searchResults li {
-    background:darkslategrey;
+    background:black;
     opacity: .9;
 }
 #searchResults li:hover {
@@ -98,5 +191,25 @@ span:nth-of-type(10){ animation-delay: 0.9s; }
     100% {
         rotate: 360deg;
     }
+}
+
+#topBtn {
+    display: none;
+    position: fixed;
+    bottom: 20px;
+    right: 30px;
+    z-index: 99;
+    font-size: 18px;
+    outline: none;
+    border: 1px solid black;
+    border-radius: 25%;
+    color: white;
+    cursor: pointer;
+    padding: 15px;
+    filter:brightness(80%);
+}
+
+#topBtn:hover {
+    filter:brightness(100%);
 }
 
