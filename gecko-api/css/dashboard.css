@@ -213,3 +213,18 @@ span:nth-of-type(10){ animation-delay: 0.9s; }
     filter:brightness(100%);
 }
 
+
+.coin-links a {
+    text-decoration: none;
+    color:rgb(20,180,90);
+    font-weight: bold;
+}
+.coin-links {
+    color:grey;
+    white-space: break-spaces;
+}
+.coin-name {
+    text-decoration: none;
+    color:white;
+}
+
