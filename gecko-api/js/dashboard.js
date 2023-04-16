@@ -115,53 +115,53 @@ const getChart = async (url) => {
                     let color = coin.price_change_percentage_24h > 0 ? 'green' : 'red';
                     let colorWeek = coin.price_change_percentage_7d_in_currency > 0 ? 'green' : 'red';
 
-const numberNotationCheck = (input) => {
+                    const numberNotationCheck = (input) => {
 
-    if (input > 100) {
-        return new Intl.NumberFormat("en-US", {
-            style: "currency",
-            currency: "USD",
-            notation: "compact",
-            compactDisplay: "short",
-            minimumSignificantDigits: 2,
-            maximumSignificantDigits: 2
-        }).format((input).toFixed(2));
-    } else if (input > 1 && input < 100) {
-        return new Intl.NumberFormat("en-US", {
-            style: "currency",
-            currency: "USD",
-            notation: "compact",
-            compactDisplay: "short",
-            minimumSignificantDigits: 3,
-            maximumSignificantDigits: 4
-        }).format((input).toFixed(2));
-    } else if (input < 1 && input >= .1) {
-        return new Intl.NumberFormat("en-US", {
-            style: "currency",
-            currency: "USD",
-            notation: "compact",
-            compactDisplay: "short",
-            minimumSignificantDigits: 3,
-            maximumSignificantDigits: 4
-        }).format((input).toFixed(2));
-    } else if (input < .1 && input > .0001) {
-        return new Intl.NumberFormat("en-US", {
-            style: "currency",
-            currency: "USD",
-            notation: "compact",
-            compactDisplay: "short",
-            minimumSignificantDigits: 4,
-            maximumSignificantDigits: 4
-        }).format(input);
-    } else {
-        return new Intl.NumberFormat('en-US', {
-            style: "currency",
-            currency: "USD",
-            notation: "scientific",
-            minimumSignificantDigits:1
-        }).format(input);
-    }
-}
+                        if (input > 100) {
+                            return new Intl.NumberFormat("en-US", {
+                                style: "currency",
+                                currency: "USD",
+                                notation: "compact",
+                                compactDisplay: "short",
+                                minimumSignificantDigits: 2,
+                                maximumSignificantDigits: 2
+                            }).format((input).toFixed(2));
+                        } else if (input > 1 && input < 100) {
+                            return new Intl.NumberFormat("en-US", {
+                                style: "currency",
+                                currency: "USD",
+                                notation: "compact",
+                                compactDisplay: "short",
+                                minimumSignificantDigits: 3,
+                                maximumSignificantDigits: 4
+                            }).format((input).toFixed(2));
+                        } else if (input <= 1 && input >= .1) {
+                            return new Intl.NumberFormat("en-US", {
+                                style: "currency",
+                                currency: "USD",
+                                notation: "compact",
+                                compactDisplay: "short",
+                                minimumSignificantDigits: 3,
+                                maximumSignificantDigits: 4
+                            }).format((input).toFixed(2));
+                        } else if (input < .1 && input > .0001) {
+                            return new Intl.NumberFormat("en-US", {
+                                style: "currency",
+                                currency: "USD",
+                                notation: "compact",
+                                compactDisplay: "short",
+                                minimumSignificantDigits: 3,
+                                maximumSignificantDigits: 3
+                            }).format(input);
+                        } else {
+                            return new Intl.NumberFormat('en-US', {
+                                style: "currency",
+                                currency: "USD",
+                                notation: "scientific",
+                                minimumSignificantDigits:1
+                            }).format(input);
+                        }
+                    }
 
 
 

@@ -108,7 +108,53 @@ const getTrending = async () => {
                 let colorWeek = coin.price_change_percentage_7d_in_currency > 0 ? 'green' : 'red';
 
 
+                const numberNotationCheck = (input) => {
 
+                    if (input > 100) {
+                        return new Intl.NumberFormat("en-US", {
+                            style: "currency",
+                            currency: "USD",
+                            notation: "compact",
+                            compactDisplay: "short",
+                            minimumSignificantDigits: 2,
+                            maximumSignificantDigits: 2
+                        }).format((input).toFixed(2));
+                    } else if (input > 1 && input < 100) {
+                        return new Intl.NumberFormat("en-US", {
+                            style: "currency",
+                            currency: "USD",
+                            notation: "compact",
+                            compactDisplay: "short",
+                            minimumSignificantDigits: 3,
+                            maximumSignificantDigits: 4
+                        }).format((input).toFixed(2));
+                    } else if (input <= 1 && input >= .1) {
+                        return new Intl.NumberFormat("en-US", {
+                            style: "currency",
+                            currency: "USD",
+                            notation: "compact",
+                            compactDisplay: "short",
+                            minimumSignificantDigits: 3,
+                            maximumSignificantDigits: 4
+                        }).format((input).toFixed(2));
+                    } else if (input < .1 && input > .0001) {
+                        return new Intl.NumberFormat("en-US", {
+                            style: "currency",
+                            currency: "USD",
+                            notation: "compact",
+                            compactDisplay: "short",
+                            minimumSignificantDigits: 3,
+                            maximumSignificantDigits: 3
+                        }).format(input);
+                    } else {
+                        return new Intl.NumberFormat('en-US', {
+                            style: "currency",
+                            currency: "USD",
+                            notation: "scientific",
+                            minimumSignificantDigits:1
+                        }).format(input);
+                    }
+                }
 
 
                 let sparkValue = coin.sparkline_in_7d.price
@@ -118,14 +164,14 @@ const getTrending = async () => {
 <td class="coin-marketcapRank"><span>${coin.market_cap_rank}</span></td>
 <td><img class="coin-icon" src="${coin.image}" alt=""><strong> ${coin.name} </strong></td>
 <td class="coin-ticker">${coin.symbol.toUpperCase()}</td>
-<td class="coin-price">${price}</td>
+<td class="coin-price">${numberNotationCheck(coin.current_price)}</td>
 <td class="coin-volChange" style="color: ${colorDay}">${(coin.price_change_percentage_1h_in_currency).toFixed(2)}%</td>
 <td class="coin-volChange" style="color: ${color};">${(coin.price_change_percentage_24h).toFixed(2)}%</td>
 <td class="coin-volChange" style="color: ${colorWeek}">${(coin.price_change_percentage_7d_in_currency).toFixed(2)}%</td>
 <td class="coin-volume">${volume}</td>
 <td class="coin-marketcap">${marketCap}</td>
-<td class="coin-high">${high}</td>
-<td class="coin-low">${low}</td>
+<td class="coin-high">${numberNotationCheck(coin.high_24h)}</td>
+<td class="coin-low">${numberNotationCheck(coin.low_24h)}</td>
 <td id="${coin.id}-sparkline">
 <div class="loading"><span>L</span>
   <span>o</span>
@@ -236,11 +282,11 @@ $('#search').on('input', function () {
 
 //event listener empties searchResults list when input field changes
 
-    getChart('https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&per_page=10&page=1&sparkline=true&price_change_percentage=1h%2C24h%2C7d&locale=en');
-    getGlobal()
-    getGas()
-    getTrending()
-    getTicker('https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&ids=bitcoin%2Cethereum%2Cdogecoin%2Cshiba-inu%2Cchainlink&per_page=10&page=1&sparkline=true&price_change_percentage=1h%2C24h%2C7d&locale=en')
+    getChart('https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&per_page=100&page=1&sparkline=true&price_change_percentage=1h%2C24h%2C7d&locale=en');
+    // getGlobal()
+    // getGas()
+    // getTrending()
+    // getTicker('https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&ids=bitcoin%2Cethereum%2Cdogecoin%2Cshiba-inu%2Cchainlink&per_page=10&page=1&sparkline=true&price_change_percentage=1h%2C24h%2C7d&locale=en')
 // getChart('../mockdb/sparkline.json')
 // getChart('https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&category=ethereum-ecosystem&per_page=100&page=1&sparkline=true&price_change_percentage=1h%2C24h%2C7d&locale=en')
 // getChart('https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&category=ethereum-ecosystem&order=market_cap_desc&per_page=1000&page=5&sparkline=false&locale=en')
