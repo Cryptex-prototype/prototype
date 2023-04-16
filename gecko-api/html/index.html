@@ -26,6 +26,9 @@
         scroll-behavior: smooth;
 
     }
+    .ticker-wrap {
+        overflow-x: hidden;
+    }
     section {
         position: relative;
         display: grid;
@@ -39,8 +42,8 @@
         width:20px;
     }
 </style>
-<div class="container">
 <header class="p-3 text-bg-dark">
+
         <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
             <a href="/" class="d-flex align-items-center mb-2 mb-lg-0 text-white text-decoration-none">
                 <svg class="bi me-2" width="40" height="32" role="img" aria-label="Bootstrap"></svg>
@@ -66,17 +69,36 @@
             </div>
         </div>
             <div id="global" class="text-end"></div>
-</header>
-
-
-<main>
 
     <div class="ticker-wrap">
         <div class="ticker"></div>
     </div>
 
+</header>
+
+
+<main>
+
         <button onclick="topFunction()" class="bg-primary" id="topBtn" title="Go to top"><i class="bi bi-arrow-up-circle"></i></button>
-    <section class="row">
+    <section class="container">
+        <div class="row">
+            <table class="table table-dark">
+                <thead>
+                <tr>
+                    <th scope="col"><button class="btn bg-dark text-white">Blockchains</button></th>
+                    <th scope="col"><button class="btn bg-dark text-white">Exchanges</button></th>
+                    <th scope="col"><button class="btn bg-dark text-white">Categories</button></th>
+                    <th scope="col"><button class="btn bg-dark text-white">Market Cap</button></th>
+
+                </tr>
+                </thead>
+                <tbody>
+                </tbody>
+            </table>
+        </div>
+
+
+    <div class="row">
         <table class="table table-dark">
             <thead id="tableHead">
             <tr>
@@ -97,6 +119,7 @@
             <tbody id="coinChart"></tbody>
             </table>
 
+    </div>
     </section>
 
     <section>
