@@ -115,9 +115,9 @@ const getTrending = async () => {
                             style: "currency",
                             currency: "USD",
                             notation: "compact",
-                            compactDisplay: "short",
-                            minimumSignificantDigits: 2,
-                            maximumSignificantDigits: 2
+                            compactDisplay: "long",
+                            minimumSignificantDigits: 3,
+                            maximumSignificantDigits: 4
                         }).format((input).toFixed(2));
                     } else if (input > 1 && input < 100) {
                         return new Intl.NumberFormat("en-US", {
