@@ -151,10 +151,10 @@ const getTrending = async () => {
     }
 }
 
+//Search and Debouncer
 const searchQuery = (input) => {
-    $('#searchResults').empty();
+    $('#searchResults').empty()
     try {
-
         $.getJSON(`https://api.coingecko.com/api/v3/search?query=${input}`)
             .done(function (data) {
                 let info = data.coins;
@@ -171,10 +171,9 @@ const searchQuery = (input) => {
                 });
             });
     } catch (error) {
-        console.error("Error fetching data: searchQuery");
+        console.error("Error fetching data:", error);
     }
 };
-
 
 function debounce(func, wait) {
     let timeout;
@@ -186,23 +185,13 @@ function debounce(func, wait) {
         }, wait);
     };
 }
-function debounce(func, wait) {
-    let timeout;
-    return function(...args) {
-        const context = this;
-        clearTimeout(timeout);
-        timeout = setTimeout(() => {
-            func.apply(context, args);
-        }, wait);
-    };
-}
 
-    const debouncedFunction = debounce(searchQuery, 4000);
+const debouncedFunction = debounce(searchQuery, 5000);
 
-    $('#search').on('input', function () {
-        $('#searchResults').empty();
-        debouncedFunction($(this).val());
-    });
+$('#search').on('input', function () {
+    $('#searchResults').empty();
+    debouncedFunction($(this).val());
+});
 
 
     const getGlobal = async () => {
