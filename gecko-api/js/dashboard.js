@@ -1,9 +1,11 @@
-let chart;
+let chart,
+    Query;
 const getOHLC = async (coin, days) => {
+        $('#chartButtons').empty()
     try {
+
         const candle = await $.getJSON(`https://api.coingecko.com/api/v3/coins/${coin}/ohlc?vs_currency=usd&days=${days}`);
         const coinData = await $.getJSON(`https://api.coingecko.com/api/v3/coins/${coin}?localization=false&tickers=true&market_data=true&community_data=true&developer_data=true&sparkline=true`)
-
         const dataPoints = candle.map((candles) => {
             return {
                 x: new Date(candles[0]),
@@ -47,12 +49,18 @@ const getOHLC = async (coin, days) => {
                 }
             }
         };
-
+        let chartButtons = `<button id="btn1">1d</button>
+    <button id="btn14" onclick=" getOHLC(Query, '14');">14d</button>
+    <button id="btn30" onclick=" getOHLC(Query, '30');">30d</button>
+    <button id="btn90" onclick=" getOHLC(Query, '90');">90d</button>
+    <a class="btn-sm bg-dark" id="deleteChart" href="#search" onclick="chart.destroy();$('#chartButtons').empty();"><i class="bi bi-dash-lg"></i></a>`
+//this button href's to #search- this might need to change
         if (chart) {
             chart.destroy();
         }
 
         chart = new ApexCharts($("#liveChart")[0], options2);
+            $('#chartButtons').append(chartButtons)
         chart.render();
     } catch (e) {
         console.error(e);
@@ -61,27 +69,13 @@ const getOHLC = async (coin, days) => {
 
 
 
-//event listeners for buttons, hardcoded atm
-$("#btn1").click(() => {
-    getOHLC(`${coin.name}`, '1');
-});
-
-$("#btn14").click(() => {
-    getOHLC(`${coin.name}`, '14');
-});
-$("#btn30").click(() => {
-    getOHLC(`${coin.name}`, '30');
-});
-
-$("#btn90").click(() => {
-    getOHLC(`${coin.name}`, '90');
-});
 const listToChart = () => {
 
 }
 
 
 const getChart = async (url) => {
+    $('#coinChart').append(`<img src=../loading.gif>`)
     $('#coinChart').empty()
     try {
         $.getJSON(url)
@@ -146,7 +140,7 @@ const getChart = async (url) => {
 <td class="coin-marketcap">${marketCap}</td>
 <td class="coin-high">${high}</td>
 <td class="coin-low">${low}</td>
-<td id='${coin.id}'><a href="#liveChart" onclick="getOHLC('${coin.id}','1')">Candles</a></td>
+<td class="coin-candles"><a href="#chartBottom" onclick="Query = '${coin.id}';getOHLC(Query,'1'); ">Candles</a></td>
 <td id="${coin.id}-sparkline">
 <div class="loading"><span>L</span>
   <span>o</span>
