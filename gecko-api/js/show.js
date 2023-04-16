@@ -300,7 +300,7 @@ const getOHLC = async (coin, days) => {
 
 
 
-//event listeners for buttons, hardcoded atm
+
 $("#btn1").click(() => {
     getOHLC(Query, '1');
 });
