@@ -110,7 +110,7 @@ const getShow = async (input) => {
                     let marketCapRank = coin.market_data.market_cap_rank
 
                     let colorHour = coin.market_data.price_change_percentage_1h_in_currency.usd > 0 ? 'green' : 'red';
-                    let colorDay = coin.market_data.price_change_percentage_24h_in_currency.usd > 0 ? 'text-success' : 'red';
+                    let colorDay = coin.market_data.price_change_percentage_24h_in_currency.usd > 0 ? 'green' : 'red';
                     let colorWeek = coin.market_data.price_change_percentage_7d_in_currency.usd > 0 ? 'green' : 'red';
 
 let hourVol = coin.market_data.price_change_percentage_1h_in_currency.usd

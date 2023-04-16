@@ -76,20 +76,24 @@
 <!--Coin basic info-->
 <main class="page-width">
   <button onclick="topFunction()" class="bg-primary" id="topBtn" title="Go to top"><i class="bi bi-arrow-up-circle"></i></button>
+      <div class="container">
       <div class="row">
         <div id="coin-description"></div> <!-- Appended from JS-->
       </div>
 
       <!--live chart-->
     <div class="row">
-      <div class="container">
-        <button href="#scrollToChart" id="btn1">1d</button>
-        <button href="#scrollToChart" id="btn14">14d</button>
-        <button href="#scrollToChart" id="btn30">30d</button>
-        <button href="#scrollToChart" id="btn90">90d</button>
+      <div class="d-inline">
+        <button class="btn" href="#scrollToChart" id="btn1">1d</button>
+        <button class="btn" href="#scrollToChart" id="btn14">14d</button>
+        <button class="btn" href="#scrollToChart" id="btn30">30d</button>
+        <button class="btn" href="#scrollToChart" id="btn90">90d</button>
+        <button class="btn" onclick="if(chart){chart.destroy()}">-</button>
+      </div>
         <div id="liveChart"></div>
       </div>
     </div>
+  <section style="height: 100vh"></section>
       <div class="row">
       <span id="scrollToChart"></span>
     </div>
