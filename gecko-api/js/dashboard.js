@@ -75,7 +75,6 @@ const listToChart = () => {
 
 
 const getChart = async (url) => {
-    $('#coinChart').append(`<img src=../loading.gif>`)
     $('#coinChart').empty()
     try {
         $.getJSON(url)
@@ -85,16 +84,10 @@ const getChart = async (url) => {
                         style: "currency",
                         currency: "USD",
                         notation: "compact",
-                        compactDisplay: "long",
+                        compactDisplay: "short",
                         maximumSignificantDigits: 3
                     }).format(coin.market_cap);
-                    let price = new Intl.NumberFormat("en-US", {
-                        style: "currency",
-                        currency: "USD",
-                        notation: "compact",
-                        compactDisplay: "long",
-                        maximumSignificantDigits: 4
-                    }).format(coin.current_price);
+
                     let volume = new Intl.NumberFormat("en-US", {
                         style: "currency",
                         currency: "USD",
@@ -109,6 +102,7 @@ const getChart = async (url) => {
                         compactDisplay: "long",
                         maximumSignificantDigits: 3
                     }).format(coin.high_24h)
+
                     let low = new Intl.NumberFormat("en-US", {
                         style: "currency",
                         currency: "USD",
@@ -121,7 +115,53 @@ const getChart = async (url) => {
                     let color = coin.price_change_percentage_24h > 0 ? 'green' : 'red';
                     let colorWeek = coin.price_change_percentage_7d_in_currency > 0 ? 'green' : 'red';
 
+const numberNotationCheck = (input) => {
 
+    if (input > 100) {
+        return new Intl.NumberFormat("en-US", {
+            style: "currency",
+            currency: "USD",
+            notation: "compact",
+            compactDisplay: "short",
+            minimumSignificantDigits: 2,
+            maximumSignificantDigits: 2
+        }).format((input).toFixed(2));
+    } else if (input > 1 && input < 100) {
+        return new Intl.NumberFormat("en-US", {
+            style: "currency",
+            currency: "USD",
+            notation: "compact",
+            compactDisplay: "short",
+            minimumSignificantDigits: 3,
+            maximumSignificantDigits: 4
+        }).format((input).toFixed(2));
+    } else if (input < 1 && input >= .1) {
+        return new Intl.NumberFormat("en-US", {
+            style: "currency",
+            currency: "USD",
+            notation: "compact",
+            compactDisplay: "short",
+            minimumSignificantDigits: 3,
+            maximumSignificantDigits: 4
+        }).format((input).toFixed(2));
+    } else if (input < .1 && input > .0001) {
+        return new Intl.NumberFormat("en-US", {
+            style: "currency",
+            currency: "USD",
+            notation: "compact",
+            compactDisplay: "short",
+            minimumSignificantDigits: 4,
+            maximumSignificantDigits: 4
+        }).format(input);
+    } else {
+        return new Intl.NumberFormat('en-US', {
+            style: "currency",
+            currency: "USD",
+            notation: "scientific",
+            minimumSignificantDigits:1
+        }).format(input);
+    }
+}
 
 
 
@@ -132,14 +172,15 @@ const getChart = async (url) => {
 <td class="coin-marketcapRank"><span>${coin.market_cap_rank}</span></td>
 <td><img class="coin-icon" src="${coin.image}" alt=""><strong> ${coin.name} </strong></td>
 <td class="coin-ticker">${coin.symbol.toUpperCase()}</td>
-<td class="coin-price">${price}</td>
+<td class="coin-price">${numberNotationCheck(coin.current_price)}</td>
 <td class="coin-volChange" style="color: ${colorDay}">${(coin.price_change_percentage_1h_in_currency).toFixed(2)}%</td>
 <td class="coin-volChange" style="color: ${color};">${(coin.price_change_percentage_24h).toFixed(2)}%</td>
 <td class="coin-volChange" style="color: ${colorWeek}">${(coin.price_change_percentage_7d_in_currency).toFixed(2)}%</td>
 <td class="coin-volume">${volume}</td>
 <td class="coin-marketcap">${marketCap}</td>
-<td class="coin-high">${high}</td>
-<td class="coin-low">${low}</td>
+<td class="coin-high">${numberNotationCheck(coin.high_24h)}</td>
+<td class="coin-low">${numberNotationCheck(coin.low_24h)}</td>
+
 <td class="coin-candles"><a href="#chartBottom" onclick="Query = '${coin.id}';getOHLC(Query,'1'); ">Candles</a></td>
 <td id="${coin.id}-sparkline">
 <div class="loading"><span>L</span>
@@ -171,7 +212,7 @@ const getChart = async (url) => {
 
 
 
-getChart('https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&ids=matic-network%2C%20fantom%2C%20binancecoin%2C%20avalanche-2%2C%20tezos&per_page=10&page=1&sparkline=true&price_change_percentage=1h%2C24h%2C7d&locale=en')
+// getChart('https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&ids=matic-network%2C%20fantom%2C%20binancecoin%2C%20avalanche-2%2C%20tezos&per_page=10&page=1&sparkline=true&price_change_percentage=1h%2C24h%2C7d&locale=en')
 
 //Search and Debouncer
 const searchQuery = (input) => {
