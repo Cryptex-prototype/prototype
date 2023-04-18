@@ -84,37 +84,44 @@ function getExchanges(url) {
 
                 $('#selectedTable').append(chartTable);
 
-                var th = $('#tableHead th')
-                th.click(function(e){
-                    var t = e.currentTarget;
-                    console.log(t);
-                    //or simply use this
-                    //console.log(this);
+                var th = $('#tableHead th');
+                th.click(function() {
+                    console.log('sorting table');
+                    let table = $(this).parents('table').eq(0);
+                    let rows = table.find('tr:gt(0)').toArray().sort(comparer($(this).index()));
+                    this.asc = !this.asc;
+                    if (!this.asc) {
+                        rows = rows.reverse();
+                    }
+                    for (var i = 0; i < rows.length; i++) {
+                        table.append(rows[i]);
+                    }
                 });
-                th.click(function(){
-                    console.log('sorting table')
-                    let table = $(this).parents('table').eq(0)
-                    let rows = table.find('tr:gt(0)').toArray().sort(comparer($(this).index()))
-                    this.asc = !this.asc
-                    if (!this.asc){rows = rows.reverse()}
-                    for (var i = 0; i < rows.length; i++){table.append(rows[i])}
-                })
                 function comparer(index) {
                     return function(a, b) {
-                        let valA = getCellValue(a, index), valB = getCellValue(b, index)
-                        return $.isNumeric(valA) && $.isNumeric(valB) ? valA - valB : valA.toString().localeCompare(valB)
+                        let valA = getCellValue(a, index), valB = getCellValue(b, index);
+                        let numA = parseFloat(valA.replace(/[^0-9.-]+/g,""));
+                        let numB = parseFloat(valB.replace(/[^0-9.-]+/g,""));
+                        if ($.isNumeric(numA) && $.isNumeric(numB)) {
+                            return numA - numB;
+                        } else {
+                            return valA.toString().localeCompare(valB);
+                        }
+                    };
+                }
+                function getCellValue(row, index) {
+                    let cell = $(row).children('td').eq(index);
+                    if (cell.data('numeric')) {
+                        return cell.attr('data-raw');
+                    } else {
+                        return cell.text();
                     }
                 }
-                function getCellValue(row, index){ return $(row).children('td').eq(index).text() }
+
 
                 data.forEach((ex) => {
 
-                    let volume_formatted = new Intl.NumberFormat("en-US", {
-                        style: "decimal",
-                        notation: "compact",
-                        compactDisplay: "long",
-                        maximumSignificantDigits: 3
-                    }).format(ex.trade_volume_24h_btc);
+                    let volume_formatted = '$' + (ex.trade_volume_24h_btc).toLocaleString('en-US');
                     const marketCap = (input) => {
                         if(input !== null || input === 0){
                             return input
@@ -134,7 +141,7 @@ function getExchanges(url) {
                     let catElement ='';
                     catElement +=
                         `<tr>
-<td class='exchange-name'><span onclick="getChart('https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&category=${ex.id}&order=market_cap_desc&per_page=100&page=1&sparkline=true&price_change_percentage=1h%2C24h%2C7d&locale=en','${ex.name}')"><img src='${ex.image}' alt=''>${ex.name}</span></td>
+<td class='exchange-name'><span style="cursor:pointer;" onclick="getChart('https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&category=${ex.id}&order=market_cap_desc&per_page=100&page=1&sparkline=true&price_change_percentage=1h%2C24h%2C7d&locale=en','${ex.name}')"><img src='${ex.image}' alt=''>${ex.name}</span></td>
 <td class="exchange-score">${ex.trust_score}</td>
 <td class="exchange-rank">${ex.trust_score_rank}</td>
 <td class="exchange-volume">₿ ${volume(volume_formatted)}</td>
@@ -181,65 +188,43 @@ function getChart(url,header) {
 
             $('#selectedTable').append(chartTable);
 
-            var th = $('#tableHead th')
-            th.click(function(e){
-                var t = e.currentTarget;
-                console.log(t);
-                //or simply use this
-                //console.log(this);
+            var th = $('#tableHead th');
+            th.click(function() {
+                console.log('sorting table');
+                let table = $(this).parents('table').eq(0);
+                let rows = table.find('tr:gt(0)').toArray().sort(comparer($(this).index()));
+                this.asc = !this.asc;
+                if (!this.asc) {
+                    rows = rows.reverse();
+                }
+                for (var i = 0; i < rows.length; i++) {
+                    table.append(rows[i]);
+                }
             });
-            th.click(function(){
-                console.log('sorting table')
-                let table = $(this).parents('table').eq(0)
-                let rows = table.find('tr:gt(0)').toArray().sort(comparer($(this).index()))
-                this.asc = !this.asc
-                if (!this.asc){rows = rows.reverse()}
-                for (var i = 0; i < rows.length; i++){table.append(rows[i])}
-            })
             function comparer(index) {
                 return function(a, b) {
-                    let valA = getCellValue(a, index), valB = getCellValue(b, index)
-                    return $.isNumeric(valA) && $.isNumeric(valB) ? valA - valB : valA.toString().localeCompare(valB)
+                    let valA = getCellValue(a, index), valB = getCellValue(b, index);
+                    let numA = parseFloat(valA.replace(/[^0-9.-]+/g,""));
+                    let numB = parseFloat(valB.replace(/[^0-9.-]+/g,""));
+                    if ($.isNumeric(numA) && $.isNumeric(numB)) {
+                        return numA - numB;
+                    } else {
+                        return valA.toString().localeCompare(valB);
+                    }
+                };
+            }
+            function getCellValue(row, index) {
+                let cell = $(row).children('td').eq(index);
+                if (cell.data('numeric')) {
+                    return cell.attr('data-raw');
+                } else {
+                    return cell.text();
                 }
             }
-            function getCellValue(row, index){ return $(row).children('td').eq(index).text() }
+
 
             data.forEach((coin) => {
-              let marketCap = new Intl.NumberFormat("en-US", {
-                  style: "currency",
-                  currency: "USD",
-                  notation: "compact",
-                  compactDisplay: "long",
-                  maximumSignificantDigits: 3
-                }).format(coin.market_cap);
-                let price = new Intl.NumberFormat("en-US", {
-                    style: "currency",
-                    currency: "USD",
-                    notation: "compact",
-                    compactDisplay: "long",
-                    maximumSignificantDigits: 4
-                }).format(coin.current_price);
-                let volume = new Intl.NumberFormat("en-US", {
-                    style: "currency",
-                    currency: "USD",
-                    notation: "compact",
-                    compactDisplay: "long",
-                    maximumSignificantDigits: 3
-                }).format(coin.total_volume)
-                let high = new Intl.NumberFormat("en-US", {
-                    style: "currency",
-                    currency: "USD",
-                    notation: "compact",
-                    compactDisplay: "long",
-                    maximumSignificantDigits: 3
-                }).format(coin.high_24h)
-                let low = new Intl.NumberFormat("en-US", {
-                    style: "currency",
-                    currency: "USD",
-                    notation: "compact",
-                    compactDisplay: "long",
-                    maximumSignificantDigits: 3
-                }).format(coin.low_24h)
+
 
                 let colorDay = coin.price_change_percentage_1h_in_currency > 0 ? 'green' : 'red';
                 let color = coin.price_change_percentage_24h > 0 ? 'green' : 'red';
@@ -247,53 +232,8 @@ function getChart(url,header) {
 
 
                 const numberNotationCheck = (input) => {
-
-                    if (input > 100) {
-                        return new Intl.NumberFormat("en-US", {
-                            style: "currency",
-                            currency: "USD",
-                            notation: "compact",
-                            compactDisplay: "long",
-                            minimumSignificantDigits: 3,
-                            maximumSignificantDigits: 4
-                        }).format((input).toFixed(2));
-                    } else if (input > 1 && input < 100) {
-                        return new Intl.NumberFormat("en-US", {
-                            style: "currency",
-                            currency: "USD",
-                            notation: "compact",
-                            compactDisplay: "short",
-                            minimumSignificantDigits: 3,
-                            maximumSignificantDigits: 4
-                        }).format((input).toFixed(2));
-                    } else if (input <= 1 && input >= .1) {
-                        return new Intl.NumberFormat("en-US", {
-                            style: "currency",
-                            currency: "USD",
-                            notation: "compact",
-                            compactDisplay: "short",
-                            minimumSignificantDigits: 3,
-                            maximumSignificantDigits: 4
-                        }).format((input).toFixed(2));
-                    } else if (input < .1 && input > .0001) {
-                        return new Intl.NumberFormat("en-US", {
-                            style: "currency",
-                            currency: "USD",
-                            notation: "compact",
-                            compactDisplay: "short",
-                            minimumSignificantDigits: 3,
-                            maximumSignificantDigits: 3
-                        }).format(input);
-                    } else {
-                        return new Intl.NumberFormat('en-US', {
-                            style: "currency",
-                            currency: "USD",
-                            notation: "scientific",
-                            minimumSignificantDigits:1
-                        }).format(input);
-                    }
+                   return '$' + (input).toLocaleString("en-US")
                 }
-
 
                 let sparkValue = coin.sparkline_in_7d.price
                 let chartElement = "";
@@ -303,14 +243,14 @@ function getChart(url,header) {
 <td><img class="coin-icon" src="${coin.image}" alt=""><strong> ${coin.name} </strong></td>
 <td class="coin-ticker">${coin.symbol.toUpperCase()}</td>
 <td class="coin-price">${numberNotationCheck(coin.current_price)}</td>
-<td class="coin-volChange" style="color: ${colorDay}">${(coin.price_change_percentage_1h_in_currency).toFixed(2)}%</td>
-<td class="coin-volChange" style="color: ${color};">${(coin.price_change_percentage_24h).toFixed(2)}%</td>
-<td class="coin-volChange" style="color: ${colorWeek}">${(coin.price_change_percentage_7d_in_currency).toFixed(2)}%</td>
-<td class="coin-volume">${volume}</td>
-<td class="coin-marketcap">${marketCap}</td>
+<td class="coin-volChange" style="color: ${colorDay}">${(coin.price_change_percentage_1h_in_currency).toFixed(2)}</td>
+<td class="coin-volChange" style="color: ${color};">${(coin.price_change_percentage_24h).toFixed(2)}</td>
+<td class="coin-volChange" style="color: ${colorWeek}">${(coin.price_change_percentage_7d_in_currency).toFixed(2)}</td>
+<td class="coin-volume">${numberNotationCheck(coin.total_volume)}</td>
+<td class="coin-marketcap">${numberNotationCheck(coin.market_cap)}</td>
 <td class="coin-high">${numberNotationCheck(coin.high_24h)}</td>
 <td class="coin-low">${numberNotationCheck(coin.low_24h)}</td>
-<td id="${coin.id}-sparkline">
+<td id="${coin.id}-sparkline" class="sparkline">
 <div class="loading"><span>L</span>
   <span>o</span>
   <span>a</span>
@@ -324,7 +264,16 @@ function getChart(url,header) {
   </div></td>`
 
                 $('#coinChart').append(chartElement)
-                if($(`#${coin.id}-sparkline`) !== null) {$(`#${coin.id}-sparkline`).sparkline(sparkValue,{value:sparkValue ,type: 'line',lineWidth: 2, lineColor:`${colorWeek}`,fillColor:false, width: 200, height:50,  normalRangeMax: coin.ath})}
+                if($(`#${coin.id}-sparkline`) !== null) {$(`#${coin.id}-sparkline`).sparkline(sparkValue,{myPrefixes: [],
+                        tooltipFormatter: function(sp, options, fields) {
+                            var format =  $.spformat();
+                            var result = '';
+                            $.each(fields, function(i, field) {
+                                field.myprefix = options.get('myPrefixes')[i];
+                                result += format.render(field, options.get('tooltipValueLookups'), options);
+                            })
+                            return result;
+                        },type: 'line',lineWidth: 2, lineColor:`${colorWeek}`,fillColor:false, width: 200, height:50,  normalRangeMax: coin.ath})}
                 else{
                     return 'NA'
                 }
@@ -365,39 +314,46 @@ function getCategories(url) {
 
                 $('#selectedTable').append(chartTable);
 
-                var th = $('#tableHead th')
-                th.click(function(){
-                    console.log('sorting table')
-                    let table = $(this).parents('table').eq(0)
-                    let rows = table.find('tr:gt(0)').toArray().sort(comparer($(this).index()))
-                    this.asc = !this.asc
-                    if (!this.asc){rows = rows.reverse()}
-                    for (var i = 0; i < rows.length; i++){table.append(rows[i])}
-                })
+                var th = $('#tableHead th');
+                th.click(function() {
+                    console.log('sorting table');
+                    let table = $(this).parents('table').eq(0);
+                    let rows = table.find('tr:gt(0)').toArray().sort(comparer($(this).index()));
+                    this.asc = !this.asc;
+                    if (!this.asc) {
+                        rows = rows.reverse();
+                    }
+                    for (var i = 0; i < rows.length; i++) {
+                        table.append(rows[i]);
+                    }
+                });
                 function comparer(index) {
                     return function(a, b) {
-                        let valA = getCellValue(a, index), valB = getCellValue(b, index)
-                        return $.isNumeric(valA) && $.isNumeric(valB) ? valA - valB : valA.toString().localeCompare(valB)
+                        let valA = getCellValue(a, index), valB = getCellValue(b, index);
+                        let numA = parseFloat(valA.replace(/[^0-9.-]+/g,""));
+                        let numB = parseFloat(valB.replace(/[^0-9.-]+/g,""));
+                        if ($.isNumeric(numA) && $.isNumeric(numB)) {
+                            return numA - numB;
+                        } else {
+                            return valA.toString().localeCompare(valB);
+                        }
+                    };
+                }
+                function getCellValue(row, index) {
+                    let cell = $(row).children('td').eq(index);
+                    if (cell.data('numeric')) {
+                        return cell.attr('data-raw');
+                    } else {
+                        return cell.text();
                     }
                 }
-                function getCellValue(row, index){ return $(row).children('td').eq(index).text() }
 data.forEach((cat) => {
 
-    let marketCap_formatted = new Intl.NumberFormat("en-US", {
-        style: "currency",
-        currency: "USD",
-        notation: "compact",
-        compactDisplay: "long",
-        maximumSignificantDigits: 3
-    }).format(cat.market_cap);
+    const currencyFormat = (input) => {
 
-    let volume_formatted = new Intl.NumberFormat("en-US", {
-        style: "currency",
-        currency: "USD",
-        notation: "compact",
-        compactDisplay: "long",
-        maximumSignificantDigits: 3
-    }).format(cat.volume_24h);
+        return '$' + (input).toLocaleString('en-US')
+    }
+
 const marketCap = (input) => {
     if(input == null || input == '$0'){
         return 'NA'
@@ -417,10 +373,10 @@ const marketCap = (input) => {
     let catElement ='';
     catElement +=
         `<tr>
-<td class='cat-name'><span onclick="getChart('https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&category=${cat.id}&order=market_cap_desc&per_page=100&page=1&sparkline=true&price_change_percentage=1h%2C24h%2C7d&locale=en','${cat.name}')">${cat.name}</span></td>
-<td>${marketCap(marketCap_formatted)}</td>
+<td class='cat-name'><span style="cursor:pointer;" onclick="getChart('https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&category=${cat.id}&order=market_cap_desc&per_page=100&page=1&sparkline=true&price_change_percentage=1h%2C24h%2C7d&locale=en','${cat.name}')">${cat.name}</span></td>
+<td>${marketCap(currencyFormat(cat.market_cap))}</td>
 <td><img src='${cat.top_3_coins[0]}' alt=''><img src='${cat.top_3_coins[1]}' alt=''><img src='${cat.top_3_coins[2]}' alt=''></td>
-<td>${volume(volume_formatted)}</td>
+<td>${volume(currencyFormat(cat.volume_24h))}</td>
 
 </tr>`
 $('#coinChart').append(catElement)
