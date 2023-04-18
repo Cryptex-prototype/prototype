@@ -28,8 +28,7 @@ const getTrending = async () => {
         console.error(e);
     }
      }
-
-     const getTicker = async (url) => {
+const getTicker = async (url) => {
     try {
         $.getJSON(url)
             .done(function (data) {
@@ -59,13 +58,152 @@ const getTrending = async () => {
             console.error(e);
         }
     }
+function getExchanges(url) {
+    $('#coinChart').empty()
+    $('#selectedTable').empty()
+    try {
+        $.getJSON(url)
+            .done(function (data) {
+                let chartTable = '';
+                chartTable +=
+                    `<h1 class="text-justify">Exchanges</h1>                
+                     <table class="table table-dark">
+                    <thead id="tableHead">
+                <tr>
+                    <th scope="col" style="cursor:pointer;" onclick="sortTable(0)">name</th>
+                    <th scope="col">trust score</th>                 
+                    <th scope="col">trust rank</th>
+                    <th scope="col">24h volume (BTC)</th>
+                    
+                  
+                
+                </tr>
+            </thead>
+                <tbody id="coinChart"></tbody>
+            </table>`
 
+                $('#selectedTable').append(chartTable);
 
-    const getChart = async (url) => {
+                var th = $('#tableHead th')
+                th.click(function(e){
+                    var t = e.currentTarget;
+                    console.log(t);
+                    //or simply use this
+                    //console.log(this);
+                });
+                th.click(function(){
+                    console.log('sorting table')
+                    let table = $(this).parents('table').eq(0)
+                    let rows = table.find('tr:gt(0)').toArray().sort(comparer($(this).index()))
+                    this.asc = !this.asc
+                    if (!this.asc){rows = rows.reverse()}
+                    for (var i = 0; i < rows.length; i++){table.append(rows[i])}
+                })
+                function comparer(index) {
+                    return function(a, b) {
+                        let valA = getCellValue(a, index), valB = getCellValue(b, index)
+                        return $.isNumeric(valA) && $.isNumeric(valB) ? valA - valB : valA.toString().localeCompare(valB)
+                    }
+                }
+                function getCellValue(row, index){ return $(row).children('td').eq(index).text() }
+
+                data.forEach((ex) => {
+
+                    let volume_formatted = new Intl.NumberFormat("en-US", {
+                        style: "decimal",
+                        notation: "compact",
+                        compactDisplay: "long",
+                        maximumSignificantDigits: 3
+                    }).format(ex.trade_volume_24h_btc);
+                    const marketCap = (input) => {
+                        if(input !== null || input === 0){
+                            return input
+                        } else {
+                            return 'NA'
+                        }
+                    }
+
+                    const volume = (input) => {
+                        if(input !== null || input === 0){
+                            return input
+                        } else {
+                            return 'NA'
+                        }
+                    }
+
+                    let catElement ='';
+                    catElement +=
+                        `<tr>
+<td class='exchange-name'><span onclick="getChart('https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&category=${ex.id}&order=market_cap_desc&per_page=100&page=1&sparkline=true&price_change_percentage=1h%2C24h%2C7d&locale=en','${ex.name}')"><img src='${ex.image}' alt=''>${ex.name}</span></td>
+<td class="exchange-score">${ex.trust_score}</td>
+<td class="exchange-rank">${ex.trust_score_rank}</td>
+<td class="exchange-volume">₿ ${volume(volume_formatted)}</td>
+
+</tr>`
+                    $('#coinChart').append(catElement)
+                })
+            })//done
+    }catch (e) {
+        console.error(e);
+    }
+}
+
+function getChart(url,header) {
         $('#coinChart').empty()
+        $('#selectedTable').empty()
     try {
     $.getJSON(url)
         .done(function (data) {
+            let chartTable = '';
+            chartTable +=
+
+                `<h1>${header}</h1>                
+            <table class="table table-dark">
+            <thead id="tableHead">
+            
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">name</th>
+                <th scope="col">ticker</th>
+                <th scope="col">price</th>
+                <th scope="col">1h</th>
+                <th scope="col">24h</th>
+                <th scope="col">7d</th>
+                <th scope="col">volume</th>
+                <th scope="col">marketcap</th>
+                <th scope="col">24h Hi</th>
+                <th scope="col">24h Lo</th>
+                <th scope="col">Last 7 days</th>
+            </tr>
+            </thead>
+            <tbody id="coinChart"></tbody>
+            </table>`
+
+            $('#selectedTable').append(chartTable);
+
+            var th = $('#tableHead th')
+            th.click(function(e){
+                var t = e.currentTarget;
+                console.log(t);
+                //or simply use this
+                //console.log(this);
+            });
+            th.click(function(){
+                console.log('sorting table')
+                let table = $(this).parents('table').eq(0)
+                let rows = table.find('tr:gt(0)').toArray().sort(comparer($(this).index()))
+                this.asc = !this.asc
+                if (!this.asc){rows = rows.reverse()}
+                for (var i = 0; i < rows.length; i++){table.append(rows[i])}
+            })
+            function comparer(index) {
+                return function(a, b) {
+                    let valA = getCellValue(a, index), valB = getCellValue(b, index)
+                    return $.isNumeric(valA) && $.isNumeric(valB) ? valA - valB : valA.toString().localeCompare(valB)
+                }
+            }
+            function getCellValue(row, index){ return $(row).children('td').eq(index).text() }
+
             data.forEach((coin) => {
               let marketCap = new Intl.NumberFormat("en-US", {
                   style: "currency",
@@ -186,8 +324,10 @@ const getTrending = async () => {
   </div></td>`
 
                 $('#coinChart').append(chartElement)
-                $(`#${coin.id}-sparkline`).sparkline(sparkValue,{type: 'line',lineWidth: 2, lineColor:`${colorWeek}`,fillColor:false, width: 200, height:50,  normalRangeMax: coin.ath})
-
+                if($(`#${coin.id}-sparkline`) !== null) {$(`#${coin.id}-sparkline`).sparkline(sparkValue,{value:sparkValue ,type: 'line',lineWidth: 2, lineColor:`${colorWeek}`,fillColor:false, width: 200, height:50,  normalRangeMax: coin.ath})}
+                else{
+                    return 'NA'
+                }
 
             }); //forEach
         }); //done
@@ -196,6 +336,109 @@ const getTrending = async () => {
     console.error(e)
     }
 }
+
+function getCategories(url) {
+    $('#coinChart').empty()
+    $('#selectedTable').empty()
+    try {
+        $.getJSON(url)
+            .done(function (data) {
+                let chartTable = '';
+                chartTable +=
+                    `<h1 class="text-justify">Categories</h1>                
+                     <table class="table table-dark">
+                    <thead id="tableHead">
+                <tr>
+                    <th scope="col">name</th>
+                    <th scope="col">marketcap</th>                 
+                    <th scope="col">top 3 tokens</th>
+                    <th scope="col">24h volume</th>
+                    
+                  
+                
+                </tr>
+            </thead>
+                <tbody id="coinChart"></tbody>
+            </table>`
+
+
+
+                $('#selectedTable').append(chartTable);
+
+                var th = $('#tableHead th')
+                th.click(function(){
+                    console.log('sorting table')
+                    let table = $(this).parents('table').eq(0)
+                    let rows = table.find('tr:gt(0)').toArray().sort(comparer($(this).index()))
+                    this.asc = !this.asc
+                    if (!this.asc){rows = rows.reverse()}
+                    for (var i = 0; i < rows.length; i++){table.append(rows[i])}
+                })
+                function comparer(index) {
+                    return function(a, b) {
+                        let valA = getCellValue(a, index), valB = getCellValue(b, index)
+                        return $.isNumeric(valA) && $.isNumeric(valB) ? valA - valB : valA.toString().localeCompare(valB)
+                    }
+                }
+                function getCellValue(row, index){ return $(row).children('td').eq(index).text() }
+data.forEach((cat) => {
+
+    let marketCap_formatted = new Intl.NumberFormat("en-US", {
+        style: "currency",
+        currency: "USD",
+        notation: "compact",
+        compactDisplay: "long",
+        maximumSignificantDigits: 3
+    }).format(cat.market_cap);
+
+    let volume_formatted = new Intl.NumberFormat("en-US", {
+        style: "currency",
+        currency: "USD",
+        notation: "compact",
+        compactDisplay: "long",
+        maximumSignificantDigits: 3
+    }).format(cat.volume_24h);
+const marketCap = (input) => {
+    if(input == null || input == '$0'){
+        return 'NA'
+    } else {
+        return input
+    }
+    }
+
+    const volume = (input) => {
+        if(input == null || input === '$0'){
+            return 'NA'
+        } else {
+            return input
+        }
+    }
+
+    let catElement ='';
+    catElement +=
+        `<tr>
+<td class='cat-name'><span onclick="getChart('https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&category=${cat.id}&order=market_cap_desc&per_page=100&page=1&sparkline=true&price_change_percentage=1h%2C24h%2C7d&locale=en','${cat.name}')">${cat.name}</span></td>
+<td>${marketCap(marketCap_formatted)}</td>
+<td><img src='${cat.top_3_coins[0]}' alt=''><img src='${cat.top_3_coins[1]}' alt=''><img src='${cat.top_3_coins[2]}' alt=''></td>
+<td>${volume(volume_formatted)}</td>
+
+</tr>`
+$('#coinChart').append(catElement)
+})
+            })//done
+    }catch (e) {
+            console.error(e);
+        }
+    }
+
+
+
+
+
+
+
+
+
 
 //Search and Debouncer
 const searchQuery = (input) => {
@@ -279,15 +522,20 @@ $('#search').on('input', function () {
             console.error(e);
         }
     }
-
-//event listener empties searchResults list when input field changes
-
-    getChart('https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&per_page=100&page=1&sparkline=true&price_change_percentage=1h%2C24h%2C7d&locale=en');
+    // getChart('https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&per_page=100&page=1&sparkline=true&price_change_percentage=1h%2C24h%2C7d&locale=en');
     // getGlobal()
     // getGas()
     // getTrending()
     // getTicker('https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&ids=bitcoin%2Cethereum%2Cdogecoin%2Cshiba-inu%2Cchainlink&per_page=10&page=1&sparkline=true&price_change_percentage=1h%2C24h%2C7d&locale=en')
-// getChart('../mockdb/sparkline.json')
+getChart('../mockdb/sparkline.json','Cryptocurrency Prices by Market Cap')
 // getChart('https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&category=ethereum-ecosystem&per_page=100&page=1&sparkline=true&price_change_percentage=1h%2C24h%2C7d&locale=en')
 // getChart('https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&category=ethereum-ecosystem&order=market_cap_desc&per_page=1000&page=5&sparkline=false&locale=en')
+
+$(document).ready(function (){
+    $('#dropdownBlockchain').click(function () {
+        $('.dropdown-Blockchain-item').toggleClass('show');
+    });
+
+
+});
 
