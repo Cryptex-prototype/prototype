@@ -75,6 +75,10 @@
 th {
     cursor: pointer;
 }
+
+td {
+    background: black!important;
+}
 body {
     padding-bottom: 5rem;
     font-family: -apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Helvetica,Arial,sans-serif,Apple Color Emoji,Segoe UI Emoji,Segoe UI Symbol
@@ -175,7 +179,9 @@ span:nth-of-type(10){ animation-delay: 0.9s; }
         rotate: 360deg;
     }
 }
-
+.sparkline canvas>div{
+    width:50px;
+}
 #topBtn {
     display: none;
     position: fixed;
