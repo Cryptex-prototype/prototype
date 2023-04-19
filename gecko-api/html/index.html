@@ -10,52 +10,7 @@
 
 </head>
 <body>
-<style>
-    .dropdown-Blockchain-item {
-        background:darkgreen;
-        display: none;
-        position: absolute;
-        z-index: 10;
-        transition: display .08s;
-    }
-    .show {
-        display:block;
-    }
 
-    .dropdown-item:hover{
-        filter:brightness(80%);
-    }
-    body,html{
-        margin:0;
-        padding: 0;
-        display: grid;
-        justify-content: center;
-        align-content: center;
-        color:white;
-        background:black;
-    }
-    * {
-        box-sizing: border-box;
-        font-family: Galvji, sans-serif;
-        scroll-behavior: smooth;
-
-    }
-    .ticker-wrap {
-        overflow-x: hidden;
-    }
-    section {
-        position: relative;
-        display: grid;
-        /*place-items: center;*/
-        /*height: 100vh;*/
-    }
-    .icons {
-        justify-content: center;
-        align-self: center;
-        height:20px;
-        width:20px;
-    }
-</style>
 <header class="p-3 text-bg-dark">
 
         <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
@@ -99,30 +54,28 @@
 
                 <div class="d-flex">
                     <div class='dropdown'>
-                        <button class="btn btn-success text-white dropdown-toggle" type="button" id="dropdownBlockchain" data-bs-toggle="dropdown" aria-expanded="false">
+                        <button class="table-buttons dropdown-toggle" type="button" id="dropdownBlockchain" data-bs-toggle="dropdown" aria-expanded="false">
                             Blockchains
                         </button>
                         <div class="dropdown-Blockchain-item">
-                        <ul style='position:relative;list-style: none;' aria-labelledby="dropdownBlockchain">
+                        <ul style='justify-content:space-around;position:relative;list-style: none;' aria-labelledby="dropdownBlockchain">
                             <li style="z-index:10;"><a class="dropdown-item" href="#" onclick="getChart('https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&category=ethereum-ecosystem&per_page=100&page=1&sparkline=true&price_change_percentage=1h%2C24h%2C7d&locale=en', 'Ethereum Ecosystem')">Ethereum</a></li>
                             <li style="z-index:10;"><a class="dropdown-item" href="#" onclick="getChart('https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&category=fantom-ecosystem&per_page=100&page=1&sparkline=true&price_change_percentage=1h%2C24h%2C7d&locale=en', 'Fantom Ecosystem')">Fantom</a></li>
                             <li style="z-index:10;"><a class="dropdown-item" href="#" onclick="getChart('https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&category=polygon-ecosystem&per_page=100&page=1&sparkline=true&price_change_percentage=1h%2C24h%2C7d&locale=en', 'Polygon-Matic Ecosystem')">Polygon-Matic</a></li>
                         </ul>
                         </div>
                     </div>
-                    <div><button class="btn bg-success text-white" onclick="getExchanges('https://api.coingecko.com/api/v3/exchanges')">Exchanges</button></div>
-                    <div><button class="btn bg-success text-white" onclick="getCategories('../mockdb/categories.json')">Categories</button></div>
-                    <div><button class="btn bg-success text-white" onclick="getChart('../mockdb/sparkline.json','Cryptocurrency Prices by Market Cap')">Market Cap</button></div>
+                    <div><button class="table-buttons" onclick="getExchanges('https://api.coingecko.com/api/v3/exchanges')">Exchanges</button></div>
+                    <div><button class="table-buttons" onclick="getCategories('https://api.coingecko.com/api/v3/coins/categories')">Categories</button></div>
+                    <div><button class="table-buttons" onclick="getChart('https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&order=market_cap_desc&per_page=100&page=1&sparkline=true&price_change_percentage=1h%2C24h%2C7d&locale=en','Cryptocurrency Prices by Market Cap')">Market Cap</button></div>
                 </div>
         </div>
 
 
-    <div class="row" id="selectedTable">
-<table></table>
-
-    </div>
+    <div class="row" id="selectedTable"></div>
     </section>
 
+<div style="height:800px;width:800px;" id="terminal"></div>
     <section>
         <div id="trending">
             <h1 style="text-align: center">Trending Now</h1>

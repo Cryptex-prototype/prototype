@@ -1,0 +1,684 @@
+{
+  "data": [
+    {
+      "id": "eth_0xa43fe16908251ee70ef74718545e4fe6c5ccec9f",
+      "type": "pool",
+      "attributes": {
+        "base_token_price_usd": "0.000000361873009687815",
+        "base_token_price_native_currency": "0.000000000190215440528669",
+        "quote_token_price_usd": "1999.04792093908",
+        "quote_token_price_native_currency": "1.0",
+        "address": "0xa43fe16908251ee70ef74718545e4fe6c5ccec9f",
+        "name": "PEPE / WETH",
+        "reserve_in_usd": "2785597.69882869203098542656165",
+        "pool_created_at": "2023-04-14T17:21:11Z"
+      },
+      "relationships": {
+        "dex": {
+          "data": {
+            "id": "uniswap_v2",
+            "type": "dex"
+          }
+        },
+        "base_token": {
+          "data": {
+            "id": "eth_0x6982508145454ce325ddbe47a25d4ec3d2311933",
+            "type": "token"
+          }
+        },
+        "quote_token": {
+          "data": {
+            "id": "eth_0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2",
+            "type": "token"
+          }
+        }
+      }
+    },
+    {
+      "id": "eth_0xad1b370187aefff639442d7596fcf9a0c0661b17",
+      "type": "pool",
+      "attributes": {
+        "base_token_price_usd": "0.0000411753021549672",
+        "base_token_price_native_currency": "0.0000000204235840044959",
+        "quote_token_price_usd": "1999.04792093908",
+        "quote_token_price_native_currency": "1.0",
+        "address": "0xad1b370187aefff639442d7596fcf9a0c0661b17",
+        "name": "COPE / WETH",
+        "reserve_in_usd": "214625.516054999448921994282",
+        "pool_created_at": "2023-04-19T05:35:23Z"
+      },
+      "relationships": {
+        "dex": {
+          "data": {
+            "id": "uniswap_v2",
+            "type": "dex"
+          }
+        },
+        "base_token": {
+          "data": {
+            "id": "eth_0xd8e163967fed76806df0097b704ba721b9b37656",
+            "type": "token"
+          }
+        },
+        "quote_token": {
+          "data": {
+            "id": "eth_0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2",
+            "type": "token"
+          }
+        }
+      }
+    },
+    {
+      "id": "eth_0x877193009a881359e80df3ded7c6e055be9cc144",
+      "type": "pool",
+      "attributes": {
+        "base_token_price_usd": "8.31019774753272",
+        "base_token_price_native_currency": "0.00413260091246308",
+        "quote_token_price_usd": "1999.30521557033",
+        "quote_token_price_native_currency": "1.0",
+        "address": "0x877193009a881359e80df3ded7c6e055be9cc144",
+        "name": "APED / WETH",
+        "reserve_in_usd": "501430.302211050855359560077894",
+        "pool_created_at": "2023-04-18T20:59:47Z"
+      },
+      "relationships": {
+        "dex": {
+          "data": {
+            "id": "uniswap_v2",
+            "type": "dex"
+          }
+        },
+        "base_token": {
+          "data": {
+            "id": "eth_0xe0151763455a8a021e64880c238ba1cff3787ff0",
+            "type": "token"
+          }
+        },
+        "quote_token": {
+          "data": {
+            "id": "eth_0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2",
+            "type": "token"
+          }
+        }
+      }
+    },
+    {
+      "id": "eth_0x0f23d49bc92ec52ff591d091b3e16c937034496e",
+      "type": "pool",
+      "attributes": {
+        "base_token_price_usd": "0.000248451628225893",
+        "base_token_price_native_currency": "0.000000125445481117303",
+        "quote_token_price_usd": "1999.04792093908",
+        "quote_token_price_native_currency": "1.0",
+        "address": "0x0f23d49bc92ec52ff591d091b3e16c937034496e",
+        "name": "WOJAK / WETH",
+        "reserve_in_usd": "1206357.6497158475551491886705",
+        "pool_created_at": "2023-04-17T23:48:11Z"
+      },
+      "relationships": {
+        "dex": {
+          "data": {
+            "id": "uniswap_v2",
+            "type": "dex"
+          }
+        },
+        "base_token": {
+          "data": {
+            "id": "eth_0x5026f006b85729a8b14553fae6af249ad16c9aab",
+            "type": "token"
+          }
+        },
+        "quote_token": {
+          "data": {
+            "id": "eth_0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2",
+            "type": "token"
+          }
+        }
+      }
+    },
+    {
+      "id": "eth_0x31191699046a17e684f2e8a1505d08ffa2f5babc",
+      "type": "pool",
+      "attributes": {
+        "base_token_price_usd": "0.0000120247578411855",
+        "base_token_price_native_currency": "0.0000000058839447356948",
+        "quote_token_price_usd": "1999.30521557033",
+        "quote_token_price_native_currency": "1.0",
+        "address": "0x31191699046a17e684f2e8a1505d08ffa2f5babc",
+        "name": "TRAD / WETH",
+        "reserve_in_usd": "193439.8776920507285456387735504",
+        "pool_created_at": "2023-04-18T20:09:11Z"
+      },
+      "relationships": {
+        "dex": {
+          "data": {
+            "id": "uniswap_v2",
+            "type": "dex"
+          }
+        },
+        "base_token": {
+          "data": {
+            "id": "eth_0x2718fedfc22cc6d727932c8424993218b0acb859",
+            "type": "token"
+          }
+        },
+        "quote_token": {
+          "data": {
+            "id": "eth_0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2",
+            "type": "token"
+          }
+        }
+      }
+    },
+    {
+      "id": "eth_0x2db388d12c56fa6bd81b101aa6ec8542e315ec5c",
+      "type": "pool",
+      "attributes": {
+        "base_token_price_usd": "0.0000203344413392456",
+        "base_token_price_native_currency": "0.00000000985424191405579",
+        "quote_token_price_usd": "1999.04792093908",
+        "quote_token_price_native_currency": "1.0",
+        "address": "0x2db388d12c56fa6bd81b101aa6ec8542e315ec5c",
+        "name": "CHAD / WETH",
+        "reserve_in_usd": "361302.791441315897426769205575",
+        "pool_created_at": "2023-04-18T02:05:47Z"
+      },
+      "relationships": {
+        "dex": {
+          "data": {
+            "id": "uniswap_v2",
+            "type": "dex"
+          }
+        },
+        "base_token": {
+          "data": {
+            "id": "eth_0x6b89b97169a797d94f057f4a0b01e2ca303155e4",
+            "type": "token"
+          }
+        },
+        "quote_token": {
+          "data": {
+            "id": "eth_0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2",
+            "type": "token"
+          }
+        }
+      }
+    },
+    {
+      "id": "eth_0x230507f6a391ae5ac0ec124f1c5b8ce454fe3f3d",
+      "type": "pool",
+      "attributes": {
+        "base_token_price_usd": "0.000169614888734691",
+        "base_token_price_native_currency": "0.0000000851839752133978",
+        "quote_token_price_usd": "1999.28058700592",
+        "quote_token_price_native_currency": "1.0",
+        "address": "0x230507f6a391ae5ac0ec124f1c5b8ce454fe3f3d",
+        "name": "NEET / WETH",
+        "reserve_in_usd": "65349.6627109640750996876823672",
+        "pool_created_at": "2023-04-18T23:56:59Z"
+      },
+      "relationships": {
+        "dex": {
+          "data": {
+            "id": "uniswap_v2",
+            "type": "dex"
+          }
+        },
+        "base_token": {
+          "data": {
+            "id": "eth_0x5883c66ca442461d406f330775d42954bfcf7d92",
+            "type": "token"
+          }
+        },
+        "quote_token": {
+          "data": {
+            "id": "eth_0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2",
+            "type": "token"
+          }
+        }
+      }
+    },
+    {
+      "id": "eth_0x0d4a11d5eeaac28ec3f61d100daf4d40471f1852",
+      "type": "pool",
+      "attributes": {
+        "base_token_price_usd": "1999.04792093908",
+        "base_token_price_native_currency": "1.0",
+        "quote_token_price_usd": "1.0033992817577",
+        "quote_token_price_native_currency": "0.000500905754358573412326948243116",
+        "address": "0x0d4a11d5eeaac28ec3f61d100daf4d40471f1852",
+        "name": "WETH / USDT",
+        "reserve_in_usd": "61097622.025892858022966994955",
+        "pool_created_at": null
+      },
+      "relationships": {
+        "dex": {
+          "data": {
+            "id": "uniswap_v2",
+            "type": "dex"
+          }
+        },
+        "base_token": {
+          "data": {
+            "id": "eth_0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2",
+            "type": "token"
+          }
+        },
+        "quote_token": {
+          "data": {
+            "id": "eth_0xdac17f958d2ee523a2206206994597c13d831ec7",
+            "type": "token"
+          }
+        }
+      }
+    },
+    {
+      "id": "eth_0x2b76272f365d4d44b159e06496ebc77e01ed0d7e",
+      "type": "pool",
+      "attributes": {
+        "base_token_price_usd": "0.0000000075058092480331",
+        "base_token_price_native_currency": "0.00000000000373971704049525",
+        "quote_token_price_usd": "1999.30521557033",
+        "quote_token_price_native_currency": "1.0",
+        "address": "0x2b76272f365d4d44b159e06496ebc77e01ed0d7e",
+        "name": "BOBO / WETH",
+        "reserve_in_usd": "193605.232882343116190296272057",
+        "pool_created_at": "2023-04-18T08:38:47Z"
+      },
+      "relationships": {
+        "dex": {
+          "data": {
+            "id": "uniswap_v2",
+            "type": "dex"
+          }
+        },
+        "base_token": {
+          "data": {
+            "id": "eth_0x5888641e3e6cbea6d84ba81edb217bd691d3be38",
+            "type": "token"
+          }
+        },
+        "quote_token": {
+          "data": {
+            "id": "eth_0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2",
+            "type": "token"
+          }
+        }
+      }
+    },
+    {
+      "id": "eth_0x61ce73f7915d2a65de70cae38b051727a81306c8",
+      "type": "pool",
+      "attributes": {
+        "base_token_price_usd": "0.00355597224626182",
+        "base_token_price_native_currency": "0.00000200285799985829",
+        "quote_token_price_usd": "1999.60323586009",
+        "quote_token_price_native_currency": "1.0",
+        "address": "0x61ce73f7915d2a65de70cae38b051727a81306c8",
+        "name": "KERMIT / WETH",
+        "reserve_in_usd": "297652.3749785811934402207454304",
+        "pool_created_at": "2023-04-17T01:59:35Z"
+      },
+      "relationships": {
+        "dex": {
+          "data": {
+            "id": "uniswap_v2",
+            "type": "dex"
+          }
+        },
+        "base_token": {
+          "data": {
+            "id": "eth_0x53250b5dfa8c911547afeaf18db025024c8e919a",
+            "type": "token"
+          }
+        },
+        "quote_token": {
+          "data": {
+            "id": "eth_0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2",
+            "type": "token"
+          }
+        }
+      }
+    },
+    {
+      "id": "eth_0xb042557907113327c1a1731555a94f3a321716b7",
+      "type": "pool",
+      "attributes": {
+        "base_token_price_usd": "0.00000237124234953542",
+        "base_token_price_native_currency": "0.00000000137530105854699",
+        "quote_token_price_usd": "1999.04792093908",
+        "quote_token_price_native_currency": "1.0",
+        "address": "0xb042557907113327c1a1731555a94f3a321716b7",
+        "name": "HONK / WETH",
+        "reserve_in_usd": "104534.256549851531249945198605",
+        "pool_created_at": "2023-04-19T00:16:47Z"
+      },
+      "relationships": {
+        "dex": {
+          "data": {
+            "id": "uniswap_v2",
+            "type": "dex"
+          }
+        },
+        "base_token": {
+          "data": {
+            "id": "eth_0x5efcea234f7547de4569aad1215fa5d2adaced38",
+            "type": "token"
+          }
+        },
+        "quote_token": {
+          "data": {
+            "id": "eth_0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2",
+            "type": "token"
+          }
+        }
+      }
+    },
+    {
+      "id": "eth_0xa42ffd05ba61e038b841caf8e947cfcd16bc3678",
+      "type": "pool",
+      "attributes": {
+        "base_token_price_usd": "0.000869850001379304",
+        "base_token_price_native_currency": "0.000000460317902462039",
+        "quote_token_price_usd": "2000.280849435",
+        "quote_token_price_native_currency": "1.0",
+        "address": "0xa42ffd05ba61e038b841caf8e947cfcd16bc3678",
+        "name": "PANDA / WETH",
+        "reserve_in_usd": "32303.36527411639861677100583868",
+        "pool_created_at": "2023-04-18T11:32:23Z"
+      },
+      "relationships": {
+        "dex": {
+          "data": {
+            "id": "uniswap_v2",
+            "type": "dex"
+          }
+        },
+        "base_token": {
+          "data": {
+            "id": "eth_0x363a6ddb71376c40381aa0b1b259c888cd5fe202",
+            "type": "token"
+          }
+        },
+        "quote_token": {
+          "data": {
+            "id": "eth_0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2",
+            "type": "token"
+          }
+        }
+      }
+    },
+    {
+      "id": "eth_0xb4e16d0168e52d35cacd2c6185b44281ec28c9dc",
+      "type": "pool",
+      "attributes": {
+        "base_token_price_usd": "1999.04792093908",
+        "base_token_price_native_currency": "1.0",
+        "quote_token_price_usd": "0.99728413286254",
+        "quote_token_price_native_currency": "0.000500122761523818",
+        "address": "0xb4e16d0168e52d35cacd2c6185b44281ec28c9dc",
+        "name": "WETH / USDC",
+        "reserve_in_usd": "73150174.436050731354196865715",
+        "pool_created_at": null
+      },
+      "relationships": {
+        "dex": {
+          "data": {
+            "id": "uniswap_v2",
+            "type": "dex"
+          }
+        },
+        "base_token": {
+          "data": {
+            "id": "eth_0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2",
+            "type": "token"
+          }
+        },
+        "quote_token": {
+          "data": {
+            "id": "eth_0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48",
+            "type": "token"
+          }
+        }
+      }
+    },
+    {
+      "id": "eth_0x5cc8886ede5118af76ffb53c178dfc258e9e3448",
+      "type": "pool",
+      "attributes": {
+        "base_token_price_usd": "0.000000000035738235573745",
+        "base_token_price_native_currency": "0.0000000000000172987975050185",
+        "quote_token_price_usd": "1999.3355093928",
+        "quote_token_price_native_currency": "1.0",
+        "address": "0x5cc8886ede5118af76ffb53c178dfc258e9e3448",
+        "name": "MUMU / WETH",
+        "reserve_in_usd": "24166.0908569911064508362523878",
+        "pool_created_at": "2023-04-18T18:45:59Z"
+      },
+      "relationships": {
+        "dex": {
+          "data": {
+            "id": "uniswap_v2",
+            "type": "dex"
+          }
+        },
+        "base_token": {
+          "data": {
+            "id": "eth_0x6732134e844368265477797e8c7262af41ce301f",
+            "type": "token"
+          }
+        },
+        "quote_token": {
+          "data": {
+            "id": "eth_0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2",
+            "type": "token"
+          }
+        }
+      }
+    },
+    {
+      "id": "eth_0xb7426bfd2abf64428fa82a71b0d44b056ffcc286",
+      "type": "pool",
+      "attributes": {
+        "base_token_price_usd": "0.00000000169773000643294",
+        "base_token_price_native_currency": "0.000000000000835554670997361",
+        "quote_token_price_usd": "1999.04792093908",
+        "quote_token_price_native_currency": "1.0",
+        "address": "0xb7426bfd2abf64428fa82a71b0d44b056ffcc286",
+        "name": "TROLL / WETH",
+        "reserve_in_usd": "124003.99098411219431270835584",
+        "pool_created_at": "2023-04-19T04:04:59Z"
+      },
+      "relationships": {
+        "dex": {
+          "data": {
+            "id": "uniswap_v2",
+            "type": "dex"
+          }
+        },
+        "base_token": {
+          "data": {
+            "id": "eth_0xf8ebf4849f1fa4faf0dff2106a173d3a6cb2eb3a",
+            "type": "token"
+          }
+        },
+        "quote_token": {
+          "data": {
+            "id": "eth_0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2",
+            "type": "token"
+          }
+        }
+      }
+    },
+    {
+      "id": "eth_0xa6bac8cad89e81fccdde7b9c84188f67d8487fb5",
+      "type": "pool",
+      "attributes": {
+        "base_token_price_usd": "0.00000680550787949042",
+        "base_token_price_native_currency": "0.00000000357820483804322",
+        "quote_token_price_usd": "1999.30521557033",
+        "quote_token_price_native_currency": "1.0",
+        "address": "0xa6bac8cad89e81fccdde7b9c84188f67d8487fb5",
+        "name": "POGGERS / WETH",
+        "reserve_in_usd": "55917.790167377602754742388178",
+        "pool_created_at": "2023-04-19T10:54:35Z"
+      },
+      "relationships": {
+        "dex": {
+          "data": {
+            "id": "uniswap_v2",
+            "type": "dex"
+          }
+        },
+        "base_token": {
+          "data": {
+            "id": "eth_0x07b9c0964d3e8734d65aea20c37334c2528ca601",
+            "type": "token"
+          }
+        },
+        "quote_token": {
+          "data": {
+            "id": "eth_0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2",
+            "type": "token"
+          }
+        }
+      }
+    },
+    {
+      "id": "eth_0xd56d3c7a80ffff89f14afa2ac062a3346a2820f7",
+      "type": "pool",
+      "attributes": {
+        "base_token_price_usd": "0.00105167878272287",
+        "base_token_price_native_currency": "0.000000494786236968411",
+        "quote_token_price_usd": "2000.07413171274",
+        "quote_token_price_native_currency": "1.0",
+        "address": "0xd56d3c7a80ffff89f14afa2ac062a3346a2820f7",
+        "name": "420 / WETH",
+        "reserve_in_usd": "24265.9993500862455653167171678",
+        "pool_created_at": "2023-04-18T17:40:47Z"
+      },
+      "relationships": {
+        "dex": {
+          "data": {
+            "id": "uniswap_v2",
+            "type": "dex"
+          }
+        },
+        "base_token": {
+          "data": {
+            "id": "eth_0x8963c85dc6cb4d3e9295da8c4b2a97330c9a3982",
+            "type": "token"
+          }
+        },
+        "quote_token": {
+          "data": {
+            "id": "eth_0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2",
+            "type": "token"
+          }
+        }
+      }
+    },
+    {
+      "id": "eth_0x61fd4ca27854a6f9f8e8d45d7a06a4ac5fe13ecb",
+      "type": "pool",
+      "attributes": {
+        "base_token_price_usd": "0.00195582499056479",
+        "base_token_price_native_currency": "0.000000994379147223947",
+        "quote_token_price_usd": "1999.30521557033",
+        "quote_token_price_native_currency": "1.0",
+        "address": "0x61fd4ca27854a6f9f8e8d45d7a06a4ac5fe13ecb",
+        "name": "FRENS / WETH",
+        "reserve_in_usd": "43401.9908349509691843577770156",
+        "pool_created_at": "2023-04-19T11:36:23Z"
+      },
+      "relationships": {
+        "dex": {
+          "data": {
+            "id": "uniswap_v2",
+            "type": "dex"
+          }
+        },
+        "base_token": {
+          "data": {
+            "id": "eth_0x25c5cd42ebb19b519b351a17beb6ea19d5c36b23",
+            "type": "token"
+          }
+        },
+        "quote_token": {
+          "data": {
+            "id": "eth_0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2",
+            "type": "token"
+          }
+        }
+      }
+    },
+    {
+      "id": "eth_0x5b6a17d4e84b8d9b40eaaae821fc141d6158fe44",
+      "type": "pool",
+      "attributes": {
+        "base_token_price_usd": "0.000000000456123115090377",
+        "base_token_price_native_currency": "0.000000000000227313604283681",
+        "quote_token_price_usd": "1999.48504233462",
+        "quote_token_price_native_currency": "1.0",
+        "address": "0x5b6a17d4e84b8d9b40eaaae821fc141d6158fe44",
+        "name": "BABYPEPE / WETH",
+        "reserve_in_usd": "131925.2011821011166740761267078",
+        "pool_created_at": null
+      },
+      "relationships": {
+        "dex": {
+          "data": {
+            "id": "uniswap_v2",
+            "type": "dex"
+          }
+        },
+        "base_token": {
+          "data": {
+            "id": "eth_0x5c559f3ee9a81da83e069c0093471cb05d84052a",
+            "type": "token"
+          }
+        },
+        "quote_token": {
+          "data": {
+            "id": "eth_0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2",
+            "type": "token"
+          }
+        }
+      }
+    },
+    {
+      "id": "eth_0x28619f138166bd7b4f2727a01873ca757b87e54e",
+      "type": "pool",
+      "attributes": {
+        "base_token_price_usd": "0.0213565934250721",
+        "base_token_price_native_currency": "0.0000106983457674268",
+        "quote_token_price_usd": "1999.30521557033",
+        "quote_token_price_native_currency": "1.0",
+        "address": "0x28619f138166bd7b4f2727a01873ca757b87e54e",
+        "name": "BPEPE / WETH",
+        "reserve_in_usd": "13105.2650574456095644380716649",
+        "pool_created_at": "2023-04-18T17:34:23Z"
+      },
+      "relationships": {
+        "dex": {
+          "data": {
+            "id": "uniswap_v2",
+            "type": "dex"
+          }
+        },
+        "base_token": {
+          "data": {
+            "id": "eth_0xed5ad5963c3173e24347ec6f5b8faeb82f7287e6",
+            "type": "token"
+          }
+        },
+        "quote_token": {
+          "data": {
+            "id": "eth_0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2",
+            "type": "token"
+          }
+        }
+      }
+    }
+  ]
+}

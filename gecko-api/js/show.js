@@ -4,8 +4,30 @@ const getShow = async (input) => {
     $('#coinChart').empty()
     try {
         $.getJSON(`https://api.coingecko.com/api/v3/coins/${input}?localization=false&tickers=true&market_data=true&community_data=true&developer_data=true&sparkline=true`)
-        // $.getJSON('../mockdb/btcShow.json')
+        // $.getJSON('../mockdb/doge.json')
             .done(function (coin) {
+
+
+                const findTop5 = () => {
+                    let top5Tickers = coin.tickers.sort((a, b) => b.volume - a.volume).slice(0, 5);
+                    return top5Tickers;
+                }
+
+                const top5Tickers = findTop5();
+                // console.log('The first ticker in the top 5 is:', top5Tickers[0]);
+                const findMax = () => {
+                    let maxTicker = coin.tickers.reduce((acc, ticker) => {
+                        let volume = ticker.volume;
+                        return (volume > acc.volume) ? ticker : acc;
+                    }, {volume: 0});
+                    // console.log('The largest volume is:', maxTicker.volume);
+                    return maxTicker;
+                }
+
+                const maxTicker = findMax();
+                // console.log('The parent object of the largest volume is:', maxTicker);
+
+
                     let marketCap = new Intl.NumberFormat("en-US", {
                         style: "decimal"
                     }).format(coin.market_data.market_cap.usd);
@@ -32,18 +54,16 @@ const getShow = async (input) => {
                     }).format(coin.market_data.total_volume.usd)
                     let high = new Intl.NumberFormat("en-US", {
                         style: "decimal",
-                        minimumSignificantDigits: 3
+                        maximumSignificantDigits: 5
                     }).format((coin.market_data.high_24h.usd).toFixed(2))
                     let low = new Intl.NumberFormat("en-US", {
                         style: "decimal",
-                        minimumSignificantDigits: 3
+                        maximumSignificantDigits: 5
                     }).format((coin.market_data.low_24h.usd).toFixed(2))
                     let ath = new Intl.NumberFormat("en-US", {
                         style: "decimal"
-                    }).format((coin.market_data.ath.usd).toFixed(2));
-                    let atl = new Intl.NumberFormat("en-US", {
-                    style: "decimal"
-                }).format((coin.market_data.atl.usd).toFixed(2));
+                    }).format(coin.market_data.ath.usd);
+                    let atl = (coin.market_data.atl.usd).toLocaleString('en-US');
 
 
                     //null checks
@@ -207,6 +227,26 @@ let weekVol = coin.market_data.price_change_percentage_7d_in_currency.usd
 <h6 class="py-1 text-secondary">The price of <span class="text-white">${coin.name}</span> has ${week_priceChange()} in the past 7 days. The community is ${sentiment()} about <span class="text-white">${coin.name}</span> in polls today.</h6>
 </div>
 
+<div class="col-md-12">
+<h2 class="pb-1 text-white">Where can you buy ${coin.name}?</h2>
+<h6 class="py-1 text-secondary"><span class="text-white">${coin.name}</span> can be traded on <span class="text-white">${maxTicker.market.name}</span> where its 24h trade volume was <span class="text-success">$${(maxTicker.volume).toLocaleString('en-US',{maximumFractionDigits: 2})}</span> , the <span class="text-white">highest</span> trade volume of all other exchanges.</h6>
+<table class="table table-dark">
+<thead>
+<h4 class="text-secondary">${coin.name} can also be traded on the following exchanges.</h4>
+<tr>
+<th scope="col" class="text-white">name</th>
+<th scope="col" class="text-white">24h volume</th>
+</tr>
+</thead>
+<tbody>
+<tr><td class="text-white">${top5Tickers[0].market.name}</td><td class="text-white">$${(top5Tickers[0].volume).toLocaleString('en-US',{maximumFractionDigits: 2})}</td></tr>
+<tr><td class="text-white">${top5Tickers[1].market.name}</td><td class="text-white">$${(top5Tickers[1].volume).toLocaleString('en-US',{maximumFractionDigits: 2})}</td></tr>
+<tr><td class="text-white">${top5Tickers[2].market.name}</td><td class="text-white">$${(top5Tickers[2].volume).toLocaleString('en-US',{maximumFractionDigits: 2})}</td></tr>
+<tr><td class="text-white">${top5Tickers[3].market.name}</td><td class="text-white">$${(top5Tickers[3].volume).toLocaleString('en-US',{maximumFractionDigits: 2})}</td></tr>
+<tr><td class="text-white">${top5Tickers[4].market.name}</td><td class="text-white">$${(top5Tickers[4].volume).toLocaleString('en-US',{maximumFractionDigits: 2})}</td></tr>
+</tbody>
+</table>
+</div>
 <div class="row">
 <div class="py-2 col-md-12">
 
