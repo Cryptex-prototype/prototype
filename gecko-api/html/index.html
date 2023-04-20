@@ -66,8 +66,8 @@
                         </div>
                     </div>
                     <div><button class="table-buttons" onclick="getExchanges('https://api.coingecko.com/api/v3/exchanges')">Exchanges</button></div>
-                    <div><button class="table-buttons" onclick="getCategories('../mockdb/categories.json')">Categories</button></div>
-                    <div><button class="table-buttons" onclick="getChart('../mockdb/sparkline.json','Cryptocurrency Prices by Market Cap')">Market Cap</button></div>
+                    <div><button class="table-buttons" onclick="getCategories('https://api.coingecko.com/api/v3/coins/categories')">Categories</button></div>
+                    <div><button class="table-buttons" onclick="getChart('https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&order=market_cap_desc&per_page=100&page=1&sparkline=true&price_change_percentage=1h%2C24h%2C7d&locale=en','Cryptocurrency Prices by Market Cap')">Market Cap</button></div>
                 </div>
         </div>
 
