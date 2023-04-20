@@ -2,6 +2,7 @@ const Query = 'dogecoin';
 
 const getShow = async (input) => {
     $('#coinChart').empty()
+    $('#coin-description').empty()
     try {
         $.getJSON(`https://api.coingecko.com/api/v3/coins/${input}?localization=false&tickers=true&market_data=true&community_data=true&developer_data=true&sparkline=true`)
         // $.getJSON('../mockdb/doge.json')
@@ -83,18 +84,16 @@ const getShow = async (input) => {
                     }
                 }
                 const sentiment = () => {
-                    let coinSentiment;
+                    let coinSentiment = coin.sentiment_votes_up_percentage;
                     if(coin.sentiment_votes_up_percentage === null){
-                        coinSentiment = `Not enough of the community has voted on <span class="text-white">${coin.name}</span> today. :(`
-                    }else {
-                        coinSentiment = coin.sentiment_votes_up_percentage
+                       return `Not enough of the community has voted on <span class="text-white">${coin.name}</span> today.`
                     }
-                    if(coin.sentiment_votes_up_percentage > 60){
-                        return `<strong style="color:green">bullish</strong> with more than <strong style="color:green;">${coinSentiment}%</strong> feeling optimistic`
+                    else if(coin.sentiment_votes_up_percentage > 60){
+                        return `The community is <strong style="color:green">bullish</strong> with more than <strong style="color:green;">${coinSentiment}%</strong> feeling optimistic about <span class="text-white">${coin.name}</span> in polls today.`
                     }else if(coin.sentiment_votes_up_percentage === 50) {
-                        return `<strong style="color:gray">mixed</strong> with <strong>${coinSentiment}%</span> feeling optimistic`
+                        return `The community is <strong style="color:gray">mixed</strong> with <strong>${coinSentiment}%</span> feeling optimistic about <span class="text-white">${coin.name}</span> in polls today.`
                     }else if(coin.sentiment_votes_up_percentage < 49){
-                        return `<strong style="color:red;">bearish</strong> with less than <strong style="color:red">${coinSentiment}%</span> optimistic`
+                        return `The community is <strong style="color:red;">bearish</strong> with less than <strong style="color:red">${coinSentiment}%</span> optimistic about <span class="text-white">${coin.name}</span> in polls today.`
                     }
                 }
                 const maxSupply = () => {
@@ -224,7 +223,7 @@ let weekVol = coin.market_data.price_change_percentage_7d_in_currency.usd
 
 <div class="col-md-12">
 <h2 class="pb-1 text-white">What is the market sentiment of ${coin.name} today?</h2>
-<h6 class="py-1 text-secondary">The price of <span class="text-white">${coin.name}</span> has ${week_priceChange()} in the past 7 days. The community is ${sentiment()} about <span class="text-white">${coin.name}</span> in polls today.</h6>
+<h6 class="py-1 text-secondary">The price of <span class="text-white">${coin.name}</span> has ${week_priceChange()} in the past 7 days. ${sentiment()} </h6>
 </div>
 
 <div class="col-md-12">
