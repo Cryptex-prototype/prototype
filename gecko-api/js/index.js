@@ -609,5 +609,8 @@ $('#coinChart').append(poolData)
         $('#dropdownBlockchain').click(function () {
             $('.dropdown-Blockchain-item').toggleClass('show');
         });
+        $('.dropdown-Blockchain-item').click(function (){
+            $('.dropdown-Blockchain-item').toggleClass('show');
+        })
     });
 
