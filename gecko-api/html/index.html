@@ -12,32 +12,19 @@
 <body>
 
 <header class="p-3 text-bg-dark">
+    <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
+        <li><a href="./dashboard.html" class="nav-link px-2 text-white">Dashboard</a></li>
+        <li><a href="./show.html" class="nav-link px-2 text-white">Show Demo</a></li>
+        <li class="justify-content-end"><div id="global"></div></li>
+    </ul>
+    <div style="position: relative">
+        <div class="col-6 col-lg-auto mb-3 mb-lg-0 me-lg-3">
 
-        <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
-            <a href="/" class="d-flex align-items-center mb-2 mb-lg-0 text-white text-decoration-none">
-                <svg class="bi me-2" width="40" height="32" role="img" aria-label="Bootstrap"></svg>
-            </a>
+            <input id="search" oninput="let input = $('#search').val();searchQuery(input); console.log(input)" type="text" class="form-control form-control-dark text-bg-dark" placeholder="Search..." aria-label="Search">
 
-            <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
-                <li><a href="#" class="nav-link px-2 text-secondary">Home</a></li>
-                <li><a href="#" class="nav-link px-2 text-white">Features</a></li>
-                <li><a href="#" class="nav-link px-2 text-white">FAQs</a></li>
-                <li><a href="#" class="nav-link px-2 text-white">About</a></li>
-            </ul>
-            <div style="position: relative">
-                <div class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3">
-
-                    <input id="search" oninput="let input = $('#search').val();searchQuery(input); console.log(input)" type="text" class="form-control form-control-dark text-bg-dark" placeholder="Search..." aria-label="Search">
-
-                </div>
-                <div><ul id="searchResults"></ul></div>
-            </div>
-            <div class="text-end">
-                <button type="button" class="btn btn-outline-light me-2">Login</button>
-                <button type="button" class="btn btn-warning">Sign-up</button>
-            </div>
+            <div><ul id="searchResults"></ul></div>
         </div>
-            <div id="global" class="text-end"></div>
+    </div>
 
     <div class="ticker-wrap">
         <div class="ticker"></div>
@@ -48,38 +35,40 @@
 
 <main>
 
-        <button onclick="topFunction()" class="bg-primary" id="topBtn" title="Go to top"><i class="bi bi-arrow-up-circle"></i></button>
+    <button onclick="topFunction()" class="bg-primary" id="topBtn" title="Go to top"><i class="bi bi-arrow-up-circle"></i></button>
     <section class="container">
         <div class="row">
 
-                <div class="d-flex">
-                    <div class='dropdown'>
-                        <button class="table-buttons dropdown-toggle" type="button" id="dropdownBlockchain" data-bs-toggle="dropdown" aria-expanded="false">
-                            Blockchains
-                        </button>
-                        <div class="dropdown-Blockchain-item">
+            <div class="d-flex">
+                <div class='dropdown'>
+                    <button class="table-buttons dropdown-toggle" type="button" id="dropdownBlockchain" data-bs-toggle="dropdown" aria-expanded="false">
+                        Blockchains
+                    </button>
+                    <div class="dropdown-Blockchain-item">
                         <ul style='justify-content:space-around;position:relative;list-style: none;' aria-labelledby="dropdownBlockchain">
                             <li style="z-index:10;"><a class="dropdown-item" href="#" onclick="getChart('https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&category=ethereum-ecosystem&per_page=100&page=1&sparkline=true&price_change_percentage=1h%2C24h%2C7d&locale=en', 'Ethereum Ecosystem')">Ethereum</a></li>
                             <li style="z-index:10;"><a class="dropdown-item" href="#" onclick="getChart('https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&category=fantom-ecosystem&per_page=100&page=1&sparkline=true&price_change_percentage=1h%2C24h%2C7d&locale=en', 'Fantom Ecosystem')">Fantom</a></li>
                             <li style="z-index:10;"><a class="dropdown-item" href="#" onclick="getChart('https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&category=polygon-ecosystem&per_page=100&page=1&sparkline=true&price_change_percentage=1h%2C24h%2C7d&locale=en', 'Polygon-Matic Ecosystem')">Polygon-Matic</a></li>
                         </ul>
-                        </div>
                     </div>
-                    <div><button class="table-buttons" onclick="getExchanges('https://api.coingecko.com/api/v3/exchanges')">Exchanges</button></div>
-                    <div><button class="table-buttons" onclick="getCategories('https://api.coingecko.com/api/v3/coins/categories')">Categories</button></div>
-                    <div><button class="table-buttons" onclick="getChart('https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&order=market_cap_desc&per_page=100&page=1&sparkline=true&price_change_percentage=1h%2C24h%2C7d&locale=en','Cryptocurrency Prices by Market Cap')">Market Cap</button></div>
                 </div>
+                <div><button class="table-buttons" onclick="getExchanges('https://api.coingecko.com/api/v3/exchanges')">Exchanges</button></div>
+                <div><button class="table-buttons" onclick="getCategories('https://api.coingecko.com/api/v3/coins/categories')">Categories</button></div>
+                <div><button class="table-buttons" onclick="getChart('https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&order=market_cap_desc&per_page=100&page=1&sparkline=true&price_change_percentage=1h%2C24h%2C7d&locale=en','Cryptocurrency Prices by Market Cap')">Market Cap</button></div>
+            </div>
         </div>
 
 
-    <div class="row" id="selectedTable"></div>
+        <div class="row" id="selectedTable"></div>
     </section>
 
-<div style="height:800px;width:800px;" id="terminal"></div>
+    <div class="container" style="height:900px;" id="terminal"></div>
     <section>
-        <div id="trending">
-            <h1 style="text-align: center">Trending Now</h1>
-            <hr style="color:white;">
+        <div class="row">
+            <div id="trending">
+                <h1 style="text-align: center">Trending Now</h1>
+                <hr style="color:white;">
+            </div>
         </div>
     </section>
 
