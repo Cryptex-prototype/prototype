@@ -260,3 +260,133 @@ section {
     height:20px;
     width:20px;
 }
+
+.tabs {
+    display: flex;
+    position: relative;
+    background: black;
+    box-shadow: 0 0 1px 0 rgba(24,94,224,.15), 0 6px 12px 0 rgba(24,94,224,.15);
+    padding-bottom: .75rem;
+    border-radius: 99px;
+}
+
+.tabs * {
+    z-index: 2;
+}
+
+input[type=radio]{
+    display: none;
+}
+
+.tab {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 54px;
+    width: 200px;
+    font-size: 1.25em;
+    font-weight: 500;
+    border-radius: 99px;
+    cursor: pointer;
+    transition: color .15s ease-in;
+}
+
+input[type=radio]:checked + label {
+    color: cyan;
+}
+
+input[id=radio1]:checked ~ .glider {
+    transform: translateX(0);
+}
+
+input[id=radio2]:checked ~ .glider {
+    transform: translateX(100%);
+}
+input[id=radio3]:checked ~ .glider {
+    transform: translateX(200%);
+}
+
+.glider {
+    position: absolute;
+    display: flex;
+    height: 54px;
+    width: 200px;
+    background: coral;
+    z-index: 12;
+    border-radius: 99px;
+    transition: 0.25s ease-out;
+}
+.dd-menu {
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    padding: 0;
+    margin: 2px 0 0 0;
+    box-shadow: 0 0 6px 0 rgba(0, 0, 0, 0.1);
+    z-index: 4;
+}
+
+/* Dropdown */
+
+.dropdown {
+    display: inline-block;
+    position: relative;
+}
+
+.dd-button {
+    display: inline-block;
+    border: 1px solid gray;
+    border-radius: 4px;
+    padding: 10px 30px 10px 20px;
+    background-color: blue;
+    cursor: pointer;
+    white-space: nowrap;
+}
+
+.dd-button:after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    right: 15px;
+    transform: translateY(-50%);
+    width: 0;
+    height: 0;
+    border-left: 5px solid transparent;
+    border-right: 5px solid transparent;
+    border-top: 5px solid black;
+}
+
+.dd-button:hover {
+    background-color: lightblue;
+}
+
+
+.dd-input {
+    display: none;
+}
+
+.dd-menu {
+    position: absolute;
+    top: 40%;
+    left: 0%;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    padding: 0;
+    margin: 2px 0 0 0;
+    box-shadow: 0 0 6px 0 rgba(0,0,0,0.1);
+
+    list-style-type: none;
+}
+
+.dd-input + .dd-menu {
+    display: none;
+}
+
+.dd-input:checked + .dd-menu {
+    display: block;
+}
+
+@media (max-width: 700px){
+    .tabs {
+        transform: scale(0.6);
+    }
+}
