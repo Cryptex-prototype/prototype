@@ -36,31 +36,47 @@
 <main>
 
     <button onclick="topFunction()" class="bg-primary" id="topBtn" title="Go to top"><i class="bi bi-arrow-up-circle"></i></button>
-    <section class="container">
+<!--    <section class="container">-->
         <div class="row">
 
-            <div class="d-flex">
-                <div class='dropdown'>
-                    <button class="table-buttons dropdown-toggle" type="button" id="dropdownBlockchain" data-bs-toggle="dropdown" aria-expanded="false">
-                        Blockchains
-                    </button>
-                    <div class="dropdown-Blockchain-item">
-                        <ul style='justify-content:space-around;position:relative;list-style: none;' aria-labelledby="dropdownBlockchain">
-                            <li style="z-index:10;"><a class="dropdown-item" href="#" onclick="getChart('https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&category=ethereum-ecosystem&per_page=100&page=1&sparkline=true&price_change_percentage=1h%2C24h%2C7d&locale=en', 'Ethereum Ecosystem')">Ethereum</a></li>
-                            <li style="z-index:10;"><a class="dropdown-item" href="#" onclick="getChart('https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&category=fantom-ecosystem&per_page=100&page=1&sparkline=true&price_change_percentage=1h%2C24h%2C7d&locale=en', 'Fantom Ecosystem')">Fantom</a></li>
-                            <li style="z-index:10;"><a class="dropdown-item" href="#" onclick="getChart('https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&category=polygon-ecosystem&per_page=100&page=1&sparkline=true&price_change_percentage=1h%2C24h%2C7d&locale=en', 'Polygon-Matic Ecosystem')">Polygon-Matic</a></li>
-                        </ul>
-                    </div>
+
+
+            <label class="dropdown">
+
+                <div class="dd-button">
+                    Blockchains
                 </div>
-                <div><button class="table-buttons" onclick="getExchanges('https://api.coingecko.com/api/v3/exchanges')">Exchanges</button></div>
-                <div><button class="table-buttons" onclick="getCategories('https://api.coingecko.com/api/v3/coins/categories')">Categories</button></div>
-                <div><button class="table-buttons" onclick="getChart('https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&order=market_cap_desc&per_page=100&page=1&sparkline=true&price_change_percentage=1h%2C24h%2C7d&locale=en','Cryptocurrency Prices by Market Cap')">Market Cap</button></div>
-            </div>
-        </div>
+
+                <input type="checkbox" class="dd-input" id="test">
+
+                    <div class="dd-menu">
+                        <div class="tabs">
+                        <input type="radio" name="tabs" id="BC1" onclick="getChart('https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&category=ethereum-ecosystem&per_page=100&page=1&sparkline=true&price_change_percentage=1h%2C24h%2C7d&locale=en', 'Ethereum Ecosystem')">
+                        <label class="tab" for="BC1">Ethereum</label>
+                        <input type="radio" name="tabs" id="BC2" onclick="getChart('https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&category=fantom-ecosystem&per_page=100&page=1&sparkline=true&price_change_percentage=1h%2C24h%2C7d&locale=en', 'Fantom Ecosystem')">
+                        <label class="tab" for="BC2">Fantom</label>
+                        <input type="radio" name="tabs" id="BC3" onclick="getChart('https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&category=polygon-ecosystem&per_page=100&page=1&sparkline=true&price_change_percentage=1h%2C24h%2C7d&locale=en', 'Polygon-Matic Ecosystem')">
+                        <label class="tab" for="BC3">Polygon-Matic</label>
+                            <input type="radio" name="tabs" id="BC4" onclick="getCategories('https://api.coingecko.com/api/v3/coins/categories')">
+                            <label class="tab" for="BC4">More..</label>
+                        </div>
+                    </div>
 
 
-        <div class="row" id="selectedTable"></div>
+                    <div class="tabs">
+                <input type="radio" name="tabs" id="radio1" onclick="getExchanges('https://api.coingecko.com/api/v3/exchanges')">
+                    <label class="tab" for="radio1">Exchanges</label>
+                <input type="radio" name="tabs" id="radio2" onclick="getCategories('https://api.coingecko.com/api/v3/coins/categories')">
+                    <label class="tab" for="radio2">Categories</label>
+                <input type="radio" name="tabs" id="radio3" onclick="getChart('https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&order=market_cap_desc&per_page=100&page=1&sparkline=true&price_change_percentage=1h%2C24h%2C7d&locale=en','Cryptocurrency Prices by Market Cap')">
+                    <label class="tab" for="radio3">Market Cap</label>
+                </div>
+                </div>
+
+
+
     </section>
+        <div class="row" id="selectedTable"></div>
 
     <div class="container" style="height:900px;" id="terminal"></div>
     <section>
