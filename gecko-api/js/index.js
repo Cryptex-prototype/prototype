@@ -15,7 +15,7 @@ const getTrending = async () => {
                         `<div class="w-100">
                  <div class="card card-custom jump">
                    <span style="display:flex;margin:2px;"><img style="margin-right:1em;" src='${coin.item.small}' alt="${coin.item.name} icon"><h1 class="coin-name">${coin.item.name}</h1><h4 class="coin-ticker"> ${coin.item.symbol}</h4></span>                 
-                    <h3 class="coin-mc">Rank# ${coin.item.market_cap_rank}</h3>
+                    <h3 class="coin-mc">Marketcap Rank #${coin.item.market_cap_rank}</h3>                 
                      <h3 class="coin-price">${price}</h3> <!--hardcode BTC current price--> 
                     <h5 class="user-rating">User Score: ${coin.item.score}/10</h5>
                     </div>
@@ -186,7 +186,7 @@ function getExchanges(url) {
                      <table class="table table-dark">
                     <thead id="tableHead">
                 <tr>
-                    <th scope="col" style="cursor:pointer;" onclick="sortTable(0)">name</th>
+                    <th scope="col" style="cursor:pointer;">name</th>
                     <th scope="col">trust score</th>                 
                     <th scope="col">trust rank</th>
                     <th scope="col">24h volume (BTC)</th>
@@ -201,7 +201,7 @@ function getExchanges(url) {
                 $('#selectedTable').append(chartTable);
 
                 var th = $('#tableHead th');
-                th.click(function() {
+                th.click(function () {
                     console.log('sorting table');
                     let table = $(this).parents('table').eq(0);
                     let rows = table.find('tr:gt(0)').toArray().sort(comparer($(this).index()));
@@ -213,11 +213,12 @@ function getExchanges(url) {
                         table.append(rows[i]);
                     }
                 });
+
                 function comparer(index) {
-                    return function(a, b) {
+                    return function (a, b) {
                         let valA = getCellValue(a, index), valB = getCellValue(b, index);
-                        let numA = parseFloat(valA.replace(/[^0-9.-]+/g,""));
-                        let numB = parseFloat(valB.replace(/[^0-9.-]+/g,""));
+                        let numA = parseFloat(valA.replace(/[^0-9.-]+/g, ""));
+                        let numB = parseFloat(valB.replace(/[^0-9.-]+/g, ""));
                         if ($.isNumeric(numA) && $.isNumeric(numB)) {
                             return numA - numB;
                         } else {
@@ -225,6 +226,7 @@ function getExchanges(url) {
                         }
                     };
                 }
+
                 function getCellValue(row, index) {
                     let cell = $(row).children('td').eq(index);
                     if (cell.data('numeric')) {
@@ -237,37 +239,42 @@ function getExchanges(url) {
 
                 data.forEach((ex) => {
 
-                    let volume_formatted = '$' + (ex.trade_volume_24h_btc).toLocaleString('en-US');
-                    const marketCap = (input) => {
-                        if(input !== null || input === 0){
-                            return input
-                        } else {
-                            return 'NA'
-                        }
-                    }
 
-                    const volume = (input) => {
-                        if(input !== null || input === 0){
-                            return input
-                        } else {
-                            return 'NA'
-                        }
-                    }
 
-                    let catElement ='';
-                    catElement +=
-                        `<tr>
-<td class='exchange-name'><a style="text-decoration: none; color:white!important;" href="#search" onclick="getPools('https://api.geckoterminal.com/api/v2/networks/eth/dexes/${ex.id}/pools','${ex.name}')"><img src='${ex.image}' alt=''>${ex.name}</a></td>
+                        let volume_formatted = '$' + (ex.trade_volume_24h_btc).toLocaleString('en-US');
+                        const marketCap = (input) => {
+                            if (input !== null || input === 0) {
+                                return input
+                            } else {
+                                return 'NA'
+                            }
+                        }
+
+                        const volume = (input) => {
+                            if (input !== null || input === 0) {
+                                return input
+                            } else {
+                                return 'NA'
+                            }
+                        }
+
+
+                        let catElement = '';
+                        catElement +=
+                            `<tr>
+<td class='exchange-name'><a style="text-decoration: none; color:white!important;" href="#search" onclick="getPools('https://api.geckoterminal.com/api/v2/networks/eth/dexes/${ex.id}/pools', '${ex.name}')"><img src='${ex.image}' alt=''>${ex.name}</a></td>
 <td class="exchange-score">${ex.trust_score}</td>
 <td class="exchange-rank">${ex.trust_score_rank}</td>
 <td class="exchange-volume">₿ ${volume(volume_formatted)}</td>
 
 </tr>`
-                    $('#coinChart').append(catElement)
-                })
+                        $('#coinChart').append(catElement)
+
+
+                    })
             })//done
-    }catch (e) {
-        console.error(e);
+    } catch (e) {
+        console.error(e)
     }
 }
 
@@ -590,7 +597,6 @@ const getGas = async () => {
         // $.getJSON('../mockdb/gas.json')
         $.getJSON('https://api.etherscan.io/api?module=gastracker&action=gasoracle')
             .done(function (data) {
-                console.log(data.result.FastGasPrice)
                 let gas = "";
                 gas +=
                     `<span>Gas: <span class="globalValue">${data.result.FastGasPrice}gwei </span></span>`
