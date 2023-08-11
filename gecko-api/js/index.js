@@ -484,7 +484,7 @@ function getCategories(url) {
                     }
 
                     const marketCap = (input) => {
-                        if(input == null || input == '$0'){
+                        if(input == null || input === '$0'){
                             return 0
                         } else {
                             return input
@@ -614,6 +614,7 @@ getTicker('https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&ids=bi
 // getChart('../mockdb/sparkline.json','Cryptocurrency Prices by Market Cap')
 // getChart('https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&category=ethereum-ecosystem&per_page=100&page=1&sparkline=true&price_change_percentage=1h%2C24h%2C7d&locale=en')
 // getChart('https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&category=ethereum-ecosystem&order=market_cap_desc&per_page=1000&page=5&sparkline=false&locale=en')
+
 
 $(document).ready(function (){
     $('#dropdownBlockchain').click(function () {
